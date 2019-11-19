@@ -7,7 +7,7 @@
 	</head>
 	<body style="margin: 10px">
 		<div data-markdown>
-
+			This
 		</div>
 	
 		<script type="text/javascript">
@@ -22,7 +22,7 @@
 				               .replace( /&#39;/g, "'" );
 				  }
 
-				// based on https://gist.github.com/paulirish/1343518
+				// //based on https://gist.github.com/paulirish/1343518
 				// (function(){
 				// 	fetch("content/posts/first.md")
 				// 		.then(response => response.text())
@@ -40,7 +40,20 @@
 							console.log(actual_JSON);
 							console.log(actual_JSON[0]);
 
-							actual_JSON.forEach(function(obj) { console.log(obj.path); });
+							var showdn = new Showdown.converter();
+							var elementToDisplay = document.querySelector('[data-markdown]');
+
+							actual_JSON.forEach(function(obj) { 
+								
+								fetch(obj.path)
+									.then(contentResponse => contentResponse.text())
+									.then(contentText => {
+										var mdText = (new Showdown.converter()).makeHtml(unescapeHTML(contentText));
+										var div = document.createElement("DIV");
+										div.innerHTML = mdText;
+										elementToDisplay.appendChild(div);
+									});
+							});
 						});
 				}());
 			}
