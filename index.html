@@ -23,12 +23,24 @@
 				  }
 
 				// based on https://gist.github.com/paulirish/1343518
+				// (function(){
+				// 	fetch("content/posts/first.md")
+				// 		.then(response => response.text())
+				// 		.then(text => {
+				// 			var elementToDisplay = document.querySelector('[data-markdown]');
+				// 			elementToDisplay.innerHTML = (new Showdown.converter()).makeHtml(unescapeHTML(text))
+				// 		});
+				// }());
+
 				(function(){
-					fetch("content/posts/first.md")
+					fetch("content/posts.json")
 						.then(response => response.text())
 						.then(text => {
-							var elementToDisplay = document.querySelector('[data-markdown]');
-							elementToDisplay.innerHTML = (new Showdown.converter()).makeHtml(unescapeHTML(text))
+							var actual_JSON = JSON.parse(text);
+							console.log(actual_JSON);
+							console.log(actual_JSON[0]);
+
+							actual_JSON.forEach(function(obj) { console.log(obj.path); });
 						});
 				}());
 			}
