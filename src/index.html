@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+	<html lang="en">	
+	<head>
+		<title>Markdown-to-HTML Sample</title>
+		<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>
+	</head>
+	<body style="margin: 10px">
+		<div data-markdown>
+#Hello
+
+sdf
+
+**sdf asdf asdf sdf**
+
+```
+var x=1;
+entry.forEach(function(item){
+    x=x++;
+})
+```
+
+## sdfsdfdf
+
+		</div>
+
+	
+		<script type="text/javascript">
+			window.onload=function(){
+				// this function is the reverse version of escapeHTML found at 
+				// https://github.com/evilstreak/markdown-js/blob/master/src/render_tree.js
+				function unescapeHTML( text ) {
+				    return text.replace( /&amp;/g, "&" )
+				               .replace( /&lt;/g, "<" )
+				               .replace( /&gt;/g, ">" )
+				               .replace( /&quot;/g, "\"" )
+				               .replace( /&#39;/g, "'" );
+				  }
+
+				// based on https://gist.github.com/paulirish/1343518
+				(function(){
+					[].forEach.call( document.querySelectorAll('[data-markdown]'), function fn(elem){
+						elem.innerHTML = (new Showdown.converter()).makeHtml(unescapeHTML(elem.innerHTML));
+					});
+				}());
+			}
+		</script>
+	</body>
+</html>                                		
