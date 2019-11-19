@@ -2,28 +2,13 @@
 	<html lang="en">	
 	<head>
 		<title>Markdown-to-HTML Sample</title>
-		<link rel="stylesheet" type="text/css" href="../lib/css/bootstrap.min.css"/>
-		<script type="text/javascript" src="../lib/js/showdown.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="lib/css/bootstrap.min.css"/>
+		<script type="text/javascript" src="lib/js/showdown.min.js"></script>
 	</head>
 	<body style="margin: 10px">
 		<div data-markdown>
-#Hello
-
-sdf
-
-**sdf asdf asdf sdf**
-
-```
-var x=1;
-entry.forEach(function(item){
-    x=x++;
-})
-```
-
-## sdfsdfdf
 
 		</div>
-
 	
 		<script type="text/javascript">
 			window.onload=function(){
@@ -39,9 +24,12 @@ entry.forEach(function(item){
 
 				// based on https://gist.github.com/paulirish/1343518
 				(function(){
-					[].forEach.call( document.querySelectorAll('[data-markdown]'), function fn(elem){
-						elem.innerHTML = (new Showdown.converter()).makeHtml(unescapeHTML(elem.innerHTML));
-					});
+					fetch("content/posts/first.md")
+						.then(response => response.text())
+						.then(text => {
+							var elementToDisplay = document.querySelector('[data-markdown]');
+							elementToDisplay.innerHTML = (new Showdown.converter()).makeHtml(unescapeHTML(text))
+						});
 				}());
 			}
 		</script>
