@@ -1,10 +1,9 @@
----
+```
 {
   "date":"2015-09-24",
   "title":"Getting Started with Git"
 }
-
----
+```
 # Third
 
 ```

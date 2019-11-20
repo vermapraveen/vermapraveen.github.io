@@ -1,4 +1,4 @@
----
+```
 {
   "date":"2015-09-24",
   "title":"Getting Started with Git",
@@ -8,8 +8,7 @@
   "categories":[ "cat1", "Focus", "Mustang" ],
   "tags":[ "Fiesta", "Focus", "Mustang" ]
 }
-
----
+```
 
 #Hello
 
