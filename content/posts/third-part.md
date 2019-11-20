@@ -1,8 +1,11 @@
+---
+{
+  "date":"2015-09-24",
+  "title":"Getting Started with Git"
+}
+
+---
 # Third
-
-sdf
-
-**sdf asdf asdf sdf**
 
 ```
 var x=1;
@@ -10,5 +13,3 @@ entry.forEach(function(item){
     x=x++;
 })
 ```
-
-## sdfsdfdf

@@ -35,7 +35,7 @@
 					var divToAdd = document.createElement("DIV");
 					divToAdd.innerHTML = rawMdText;
 					var metadata = divToAdd.firstElementChild.nextElementSibling;
-					// var postMeta = JSON.parse(metadata.innerText);
+					var postMeta = JSON.parse(metadata.innerText);
 				}
 
 				(function(){
@@ -47,17 +47,18 @@
 							var showdn = new Showdown.converter();
 							var elementToDisplay = document.getElementById('data-markdown');
 
-							actual_JSON.forEach(function(obj) { 
-								
+							actual_JSON.forEach(function(obj) {	
 								fetch(obj.path)
 									.then(contentResponse => contentResponse.text())
 									.then(contentText => {
-										var mdText = (new Showdown.converter()).makeHtml(unescapeHTML(contentText));
-										applyFirstStyle(mdText);
+										var mdText = showdn.makeHtml(unescapeHTML(contentText));
+										applyFirstStyle(mdText);										
 										var divToAdd = document.createElement("DIV");
 										divToAdd.innerHTML = mdText;
-										elementToDisplay.appendChild(divToAdd);
-									});
+										elementToDisplay.appendChild(divToAdd);										
+								});
+
+								console.log(obj.path);					
 							});
 						});
 				}());
