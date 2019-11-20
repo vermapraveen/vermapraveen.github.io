@@ -47,17 +47,17 @@
 							var showdn = new Showdown.converter();
 							var elementToDisplay = document.getElementById('data-markdown');
 
-							actual_JSON.forEach(function(obj) { 
-								
+							actual_JSON.forEach(function(obj) {	
+								console.log(obj.path);							
 								fetch(obj.path)
 									.then(contentResponse => contentResponse.text())
 									.then(contentText => {
-										var mdText = (new Showdown.converter()).makeHtml(unescapeHTML(contentText));
-										applyFirstStyle(mdText);
+										var mdText = showdn.makeHtml(unescapeHTML(contentText));
+										//applyFirstStyle(mdText);
 										var divToAdd = document.createElement("DIV");
 										divToAdd.innerHTML = mdText;
 										elementToDisplay.appendChild(divToAdd);
-									});
+								});
 							});
 						});
 				}());
