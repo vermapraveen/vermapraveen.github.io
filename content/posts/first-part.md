@@ -1,4 +1,5 @@
 ---
+
 date: 2015-09-24
 title: 'Getting Started with Git'
 template: post
@@ -10,6 +11,7 @@ tags:
   - git
   - setup
   - version control  
+  
 ---
 
 #Hello
