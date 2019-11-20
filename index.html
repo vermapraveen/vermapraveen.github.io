@@ -6,7 +6,7 @@
 		<script type="text/javascript" src="lib/js/showdown.min.js"></script>
 	</head>
 	<body style="margin: 10px">
-		<div data-markdown>
+		<div id="data-markdown">
 		</div>
 	
 		<script type="text/javascript">
@@ -31,16 +31,21 @@
 				// 		});
 				// }());
 
+				function applyFirstStyle(rawMdText) {
+					var divToAdd = document.createElement("DIV");
+					divToAdd.innerHTML = rawMdText;
+					var metadata = divToAdd.firstElementChild.nextElementSibling;
+					// var postMeta = JSON.parse(metadata.innerText);
+				}
+
 				(function(){
 					fetch("content/posts.json")
 						.then(response => response.text())
 						.then(text => {
 							var actual_JSON = JSON.parse(text);
-							console.log(actual_JSON);
-							console.log(actual_JSON[0]);
 
 							var showdn = new Showdown.converter();
-							var elementToDisplay = document.querySelector('[data-markdown]');
+							var elementToDisplay = document.getElementById('data-markdown');
 
 							actual_JSON.forEach(function(obj) { 
 								
@@ -48,12 +53,17 @@
 									.then(contentResponse => contentResponse.text())
 									.then(contentText => {
 										var mdText = (new Showdown.converter()).makeHtml(unescapeHTML(contentText));
-										var div = document.createElement("DIV");
-										div.innerHTML = mdText;
-										elementToDisplay.appendChild(div);
+										applyFirstStyle(mdText);
+										var divToAdd = document.createElement("DIV");
+										divToAdd.innerHTML = mdText;
+										elementToDisplay.appendChild(divToAdd);
 									});
 							});
 						});
+				}());
+
+				(function(){
+					
 				}());
 			}
 		</script>

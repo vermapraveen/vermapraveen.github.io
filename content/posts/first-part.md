@@ -1,17 +1,15 @@
 ---
-
 date: 2015-09-24
 title: 'Getting Started with Git'
 template: post
 thumbnail: '../thumbnails/test.jpeg'
 slug: getting-started-with-git
-categories:
+categories: 
   - Tools
-tags:
+tags: 
   - git
   - setup
-  - version control  
-  
+  - version control
 ---
 
 #Hello
