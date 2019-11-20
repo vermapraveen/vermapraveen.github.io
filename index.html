@@ -34,8 +34,8 @@
 				function applyFirstStyle(rawMdText) {
 					var divToAdd = document.createElement("DIV");
 					divToAdd.innerHTML = rawMdText;
-					var metadata = divToAdd.firstElementChild.nextElementSibling;
-					var postMeta = JSON.parse(metadata.innerText);
+					var metadataElement = divToAdd.firstElementChild.nextElementSibling;
+					var postMeta = JSON.parse(metadataElement.innerText);
 				}
 
 				(function(){
@@ -55,6 +55,7 @@
 										applyFirstStyle(mdText);										
 										var divToAdd = document.createElement("DIV");
 										divToAdd.innerHTML = mdText;
+										divToAdd.firstElementChild.nextElementSibling.style.display = 'none';
 										elementToDisplay.appendChild(divToAdd);										
 								});
 
