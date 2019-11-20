@@ -1,7 +1,8 @@
 ```
 {
   "date":"2015-09-24",
-  "title":"Getting Started with Git"
+  "title":"Getting Started with Git",
+  "draft":"true"
 }
 ```
 # Third

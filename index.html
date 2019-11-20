@@ -58,6 +58,11 @@
 							var elementToDisplay = document.getElementById('data-markdown');
 
 							actual_JSON.forEach(function(obj) {	
+								if(obj.draft)
+								{
+									return;
+								}
+
 								fetch(obj.path)
 									.then(contentResponse => contentResponse.text())
 									.then(contentText => {
@@ -109,7 +114,7 @@
 												});
 												
 												divToAdd.appendChild(tagListToAdd);
-											}
+											}											
 										}
 
 										divToAdd.firstElementChild.style.display = 'none';
