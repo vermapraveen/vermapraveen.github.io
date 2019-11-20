@@ -3,7 +3,7 @@
   "date":"2015-09-24",
   "title":"Getting Started with Git",
   "template":"post",
-  "thumbnail":"../thumbnails/test.jpeg",
+  "thumbnail":"content/thumbnails/test.jpeg",
   "slug":"getting-started-with-git",
   "categories":[ "cat1", "Focus", "Mustang" ],
   "tags":[ "Fiesta", "Focus", "Mustang" ]
