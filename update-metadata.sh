@@ -7,7 +7,7 @@ FILES="content/posts"
 
 for blogfile in $FILES/*; do
   echo $blogfile
-done  < jq -R -s -c 'split("\n")'
+done  | jq -R -s -c 'split("\n")'
 
 
 BUCKET_NAME=testbucket
