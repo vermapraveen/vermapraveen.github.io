@@ -4,6 +4,10 @@
 set -e
 
 FILES="content/posts"
+URI=https://api.github.com
+API_VERSION=v3
+API_HEADER="Accept: application/vnd.github.${API_VERSION}+json; application/vnd.github.antiope-preview+json"
+AUTH_HEADER="Authorization: token ${GITHUB_TOKEN}"
 
 for blogfile in $FILES/*; do
   echo $blogfile
@@ -11,7 +15,7 @@ done  | jq -R -s -c 'split("\n")'
 
 POST_METADATA_FILE=content/posts.json
 BUCKET_NAME="first part"
-OBJECT_NAME="first-part"
+OBJECT_NAME="first-part-1"
 TARGET_LOCATION="[ "Fiesta", "Focus", "Mustang" ]"
 
 JSON_STRING=$( jq -n \
@@ -27,5 +31,6 @@ repo=$(basename $remote .git)
 
 echo $remote
 echo $repo
-# git add $POST_METADATA_FILE
-# git commit -m "metadata-file-updated #patch"
+git add $POST_METADATA_FILE
+git commit -m "metadata-file-updated #patch"
+git push
