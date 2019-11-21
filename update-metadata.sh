@@ -42,8 +42,8 @@ FILES_UPDATED=$(git status -s -uno | wc -l)
 
 echo 'File Updated' : $FILES_UPDATED
 
-if [$FILES_UPDATED>0]
-then
+zero=0;
+if (($FILES_UPDATED > 0)); then
   git branch
   git config --global user.email "verma.praveen@gmail.com"
   git config --global user.name "auto-github-action"
