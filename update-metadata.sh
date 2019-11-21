@@ -10,8 +10,8 @@ API_HEADER="Accept: application/vnd.github.${API_VERSION}+json; application/vnd.
 AUTH_HEADER="Authorization: token ${GITHUB_TOKEN}"
 
 
-git fetch
-git checkout -b master origin/master
+# git fetch
+# git checkout -b master origin/master
 
 for blogfile in $FILES/*; do
   echo $blogfile
@@ -28,7 +28,12 @@ JSON_STRING=$( jq -n \
                   --arg tl "$TARGET_LOCATION" \
                   '{title: $bn, path: $on, tags: $tl}' )
 
-echo $JSON_STRING > $POST_METADATA_FILE
+JSON_STR2='[
+    { "title": "first part", "path": "first-part-1", "tags": "[ Fiesta, Focus, Mustang ]" },
+    { "title": "second part", "path": "first-part-2", "tags": "[ Fiesta, Focus, Mustang ]" }
+]'
+
+echo $JSON_STR2 > $POST_METADATA_FILE
 
 # remote=$(git config --get remote.origin.url)
 # repo=$(basename $remote .git)
@@ -38,16 +43,17 @@ echo $JSON_STRING > $POST_METADATA_FILE
 # git remote -v
 # git remote -v
 
-FILES_UPDATED=$(git status -s -uno | wc -l)
+# FILES_UPDATED=$(git status -s -uno | wc -l)
 
-echo 'File Updated' : $FILES_UPDATED
+# echo 'File Updated' : $FILES_UPDATED
 
-zero=0;
-if (($FILES_UPDATED > 0)); then
-  git branch
-  git config --global user.email "verma.praveen@gmail.com"
-  git config --global user.name "auto-github-action"
-  git add $POST_METADATA_FILE
-  git commit -m "metadata-file-updated #patch"
-  git push -u origin master
-fi
+# zero=0;
+# if (($FILES_UPDATED > 0)); then
+#   git branch
+#   git config --global user.email "verma.praveen@gmail.com"
+#   git config --global user.name "auto-github-action"
+#   git add $POST_METADATA_FILE
+#   git commit -m "metadata-file-updated #patch"
+
+#   git push https://${REPO_OWNER}:${GITHUB_TOKEN}@github.com/vermapraveen/vermapraveen.github.io.git --all
+# fi
