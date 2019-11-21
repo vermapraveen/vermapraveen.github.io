@@ -13,6 +13,9 @@ jobs:
       run: sudo apt-get install jq
     - name: execute update metadata
       run: ./update-metadata.sh
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        REPO_OWNER: vermapraveen
     - name: Run a one-line script2
       run: ls ../    
     - name: Run a one-line script3
