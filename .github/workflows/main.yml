@@ -10,22 +10,4 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v1
-    # - name: install jq
-    #   run: sudo apt-get install jq
-    - name: Build and Deploy
-      uses: JamesIves/github-pages-deploy-action@master
-      env:
-        ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BRANCH: master
-        FOLDER: dist
-        BUILD_SCRIPT: ./build.sh
-    # - name: execute update metadata
-    #   run: ./update-metadata.sh
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #     REPO_OWNER: vermapraveen
-    # - name: Run a one-line script2
-    #   run: ls ../    
-    # - name: Run a one-line script3
-    #   run: ls ../../
       
