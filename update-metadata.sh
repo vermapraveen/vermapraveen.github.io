@@ -19,7 +19,7 @@ done  | jq -R -s -c 'split("\n")'
 
 POST_METADATA_FILE=content/posts.json
 BUCKET_NAME="first part"
-OBJECT_NAME="first-part-1"
+OBJECT_NAME="first-part-2"
 TARGET_LOCATION="[ "Fiesta", "Focus", "Mustang" ]"
 
 JSON_STRING=$( jq -n \
