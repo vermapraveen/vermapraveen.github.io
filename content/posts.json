@@ -1,5 +1,1 @@
-[
-    { "title":"first part", "path":"first-part", "tags":[ "Fiesta", "Focus", "Mustang" ] },
-    { "title":"second part", "path":"second-part", "tags":[ "Fiesta", "Focus", "Mustang" ] },
-    { "title":"third part", "path":"third-part", "tags":[ "Fiesta" ], "draft": true }
-]
+{ "title": "first part", "path": "first-part", "tags": "[ Fiesta, Focus, Mustang ]" }
