@@ -9,6 +9,10 @@ API_VERSION=v3
 API_HEADER="Accept: application/vnd.github.${API_VERSION}+json; application/vnd.github.antiope-preview+json"
 AUTH_HEADER="Authorization: token ${GITHUB_TOKEN}"
 
+
+git fetch
+git checkout -b master origin/master
+
 for blogfile in $FILES/*; do
   echo $blogfile
 done  | jq -R -s -c 'split("\n")'
@@ -33,8 +37,6 @@ echo $remote
 echo $repo
 git remote -v
 git remote -v
-
-git checkout master
 
 git branch
 git config --global user.email "verma.praveen@gmail.com"
