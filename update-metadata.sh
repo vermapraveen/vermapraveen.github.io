@@ -3,7 +3,7 @@
 
 set -e
 
-FILES="content/posts"
+FILES="src/content/posts"
 URI=https://api.github.com
 API_VERSION=v3
 API_HEADER="Accept: application/vnd.github.${API_VERSION}+json; application/vnd.github.antiope-preview+json"

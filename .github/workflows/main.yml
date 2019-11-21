@@ -17,8 +17,8 @@ jobs:
       env:
         ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH: master
-        FOLDER: .
-        BUILD_SCRIPT: ./update-metadata.sh
+        FOLDER: dist
+        BUILD_SCRIPT: ./build.sh
     # - name: execute update metadata
     #   run: ./update-metadata.sh
     #   env:
