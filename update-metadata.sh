@@ -34,6 +34,9 @@ echo $repo
 git remote -v
 git remote -v
 
+git checkout master
+
+git branch
 git config --global user.email "verma.praveen@gmail.com"
 git config --global user.name "auto-github-action"
 git add $POST_METADATA_FILE
