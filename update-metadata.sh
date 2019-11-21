@@ -33,6 +33,7 @@ echo $remote
 echo $repo
 git config --global user.email "verma.praveen@gmail.com"
 git config --global user.name "auto-github-action"
+git remote add https://github.com/vermapraveen/vermapraveen.github.io.git
 git add $POST_METADATA_FILE
 git commit -m "metadata-file-updated #patch"
 git push origin master
