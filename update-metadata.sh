@@ -30,17 +30,24 @@ JSON_STRING=$( jq -n \
 
 echo $JSON_STRING > $POST_METADATA_FILE
 
-remote=$(git config --get remote.origin.url)
-repo=$(basename $remote .git)
+# remote=$(git config --get remote.origin.url)
+# repo=$(basename $remote .git)
 
-echo $remote
-echo $repo
-git remote -v
-git remote -v
+# echo $remote
+# echo $repo
+# git remote -v
+# git remote -v
 
-git branch
-git config --global user.email "verma.praveen@gmail.com"
-git config --global user.name "auto-github-action"
-git add $POST_METADATA_FILE
-git commit -m "metadata-file-updated #patch"
-git push -u origin master
+FILES_UPDATED=$(git status -s -uno | wc -l)
+
+echo 'File Updated' : $FILES_UPDATED
+
+if [$FILES_UPDATED>0]
+then
+  git branch
+  git config --global user.email "verma.praveen@gmail.com"
+  git config --global user.name "auto-github-action"
+  git add $POST_METADATA_FILE
+  git commit -m "metadata-file-updated #patch"
+  git push -u origin master
+fi
