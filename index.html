@@ -1,41 +1,23 @@
 <!DOCTYPE html>
-	<html lang="en">	
+<html lang="en">
 	<head>
 		<title>Markdown-to-HTML Sample</title>
-		<link rel="stylesheet" type="text/css" href="lib/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="lib/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="src/styles/main.css" />
+
+		<script src="src/scripts/index.js"></script>
 		<script type="text/javascript" src="lib/js/showdown.min.js"></script>
 	</head>
-	<body style="margin: 10px">
-		<div id="item-list">
+	<body>
+		<div class="container-fluid main-container">
+			<div id="item-list">
+			</div>
 		</div>
-	
+
 		<script type="text/javascript">
 			window.onload=function(){
-				(function(){
-					fetch("content/posts.json")
-						.then(response => response.text())
-						.then(text => {
-							var actual_JSON = JSON.parse(text);
-
-							var showdn = new Showdown.converter();
-							var elementToDisplay = document.getElementById('item-list');
-
-							actual_JSON.forEach(function(obj) {	
-								if(obj.draft)
-								{
-									return;
-								}
-
-								var aTag = document.createElement('a');
-								aTag.setAttribute('href', 'blog.html?id='+obj.path);
-								aTag.innerText = obj.title;
-	
-								elementToDisplay.appendChild(aTag);				
-
-							});
-						});
-				}());
+				getBasicData();
 			}
 		</script>
 	</body>
-</html>                                		
+</html>
