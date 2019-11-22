@@ -1,3 +1,10 @@
+window.onload=function(){
+    var markdownFileName = window.location.search.substring(4) + '.md';
+    document.getElementById('editOnGithub').setAttribute("href","https://github.com/vermapraveen/vermapraveen.github.io/blob/master/content/posts/"+markdownFileName)
+
+    getPostData(markdownFileName);
+}
+
 function getBasicData() {
     fetch("../content/posts.json")
         .then(response => response.text())
