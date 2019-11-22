@@ -1,20 +1,24 @@
 <!DOCTYPE html>
-	<html lang="en">	
+<html lang="en">
 	<head>
 		<title>Markdown-to-HTML Sample</title>
-		<link rel="stylesheet" type="text/css" href="../lib/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../lib/css/bootstrap.min.css" />
 		<script type="text/javascript" src="../lib/js/showdown.min.js"></script>
 	</head>
 	<body style="margin: 10px">
+		<a id="editOnGithub" class="nav-link"
+			href="https://github.com/vermapraveen/vermapraveen.github.io/blob/master/content/posts/">Edit</a>
 		<div id="data-markdown">
 		</div>
-	
-        <script src="scripts/index.js"></script>
+		<script src="scripts/index.js"></script>
 
-        <script type="text/javascript">
+		<script type="text/javascript">
 			window.onload=function(){
-				getPostData();
+				var markdownFileName = window.location.search.substring(4) + '.md';
+				document.getElementById('editOnGithub').setAttribute("href","https://github.com/vermapraveen/vermapraveen.github.io/blob/master/content/posts/"+markdownFileName)
+
+				getPostData(markdownFileName);
 			}
 		</script>
 	</body>
-</html>                                		
+</html>

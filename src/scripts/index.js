@@ -22,8 +22,8 @@ function getBasicData() {
         });
 };
 
-function getPostData() {
-    fetch('../' + 'content/posts/' + window.location.search.substring(4) + '.md')
+function getPostData(markdownFileName) {
+    fetch('../' + 'content/posts/' + markdownFileName)
         .then(contentResponse => contentResponse.text())
         .then(contentText => {
             var showdn = new Showdown.converter();
