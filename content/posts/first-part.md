@@ -5,7 +5,7 @@
 "thumbnail":"content/thumbnails/test.jpeg",
 "slug":"getting-started-with-git",
 "categories":[ "cat1", "Focus", "Mustang" ],
-"tags":[ "Fiesta", "Focus", "Mustang" ]
+"tags":[ "Fiesta", "Focus", "Mustang" ] 
 
 ---
 

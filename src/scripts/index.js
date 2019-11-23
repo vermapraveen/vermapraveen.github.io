@@ -30,7 +30,7 @@ function getBasicData() {
 };
 
 function getPostData(markdownFileName) {
-    fetch('../' + 'content/posts/' + markdownFileName)
+    fetch('/' +markdownFileName)
         .then(contentResponse => contentResponse.text())
         .then(contentText => {
             var showdn = new Showdown.converter();
@@ -40,8 +40,14 @@ function getPostData(markdownFileName) {
             var divToAdd = document.createElement("DIV");
             divToAdd.innerHTML = mdText;
 
-            var metadataElement = divToAdd.firstElementChild.firstElementChild;
-            var postMeta = JSON.parse(metadataElement.innerText);
+            var metadataElement = divToAdd.getElementsByTagName('p')[0];
+            var hrBefore = divToAdd.getElementsByTagName('hr')[0];
+            var hrAfter = divToAdd.getElementsByTagName('hr')[1];
+            hrBefore.parentNode.removeChild(hrBefore);
+            hrAfter.parentNode.removeChild(hrAfter);
+
+            var jsontext='{'+metadataElement.innerText+'}';
+            var postMeta = JSON.parse(jsontext);
 
             if (postMeta) {
                 if (postMeta.date) {
@@ -61,7 +67,7 @@ function getPostData(markdownFileName) {
                 if (postMeta.thumbnail) {
                     var thumbnailDivToAdd = document.createElement("IMG");
                     thumbnailDivToAdd.setAttribute("id", "blogThumbnail");
-                    thumbnailDivToAdd.setAttribute("src", '../' + postMeta.thumbnail);
+                    thumbnailDivToAdd.setAttribute("src", '/' + postMeta.thumbnail);
 
                     divToAdd.appendChild(thumbnailDivToAdd);
                 }
@@ -81,7 +87,7 @@ function getPostData(markdownFileName) {
                 }
             }
 
-            divToAdd.firstElementChild.style.display = 'none';
+            metadataElement.style.display = 'none';
             elementToDisplay.appendChild(divToAdd);
         });
 };

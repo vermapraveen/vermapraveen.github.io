@@ -7,6 +7,7 @@
 "categories":[ "cat1", "Focus", "Mustang" ],
 "tags":[ "Fiesta", "Focus", "Mustang" ],
 "draft":"true"
+
 ---
 
 # Third
