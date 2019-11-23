@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function (event) {
-    var body = document.getElementsByTagName("BODY")[0];
-    var nav=getNavComponent();
-    body.insertBefore(nav, body.firstChild);
+    var body = document.getElementsByTagName("BODY")[0];  
+    var header = getHeaderComponent();
+
+    body.insertBefore(header, body.firstChild);
 });
 
 function getNavComponent() {
@@ -23,6 +24,16 @@ function createSiteMenu() {
     menu.appendChild(projectsMenuItem);
     return menu;
 }
+
+function getHeaderComponent() {
+    var header = document.createElement("DIV");
+    header.setAttribute('class', "header");
+
+    var nav=getNavComponent();
+    header.appendChild(nav);
+
+    return header;
+};
 
 function getMenuComponent() {
     var menu = document.createElement("UL");
