@@ -6,7 +6,7 @@ window.onload=function(){
 }
 
 function getBasicData() {
-    fetch("../content/posts.json")
+    fetch("/content/posts.json")
         .then(response => response.text())
         .then(text => {
             var actual_JSON = JSON.parse(text);
