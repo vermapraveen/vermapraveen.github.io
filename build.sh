@@ -13,6 +13,4 @@ done
 postJson=$postJson']'
 echo $postJson > $POST_METADATA_FILE
 
-git add $POST_METADATA_FILE
-
 

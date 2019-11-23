@@ -1,5 +1,5 @@
 window.onload=function(){
-    var markdownFileName = window.location.search.substring(4) + '.md';
+    var markdownFileName = window.location.search.substring(4);
     document.getElementById('editOnGithub').setAttribute("href","https://github.com/vermapraveen/vermapraveen.github.io/blob/master/content/posts/"+markdownFileName)
 
     getPostData(markdownFileName);
