@@ -1,6 +1,6 @@
 ---
 "date":"2015-09-24",
-"title":"Getting Started with Git",
+"title":"Third",
 "template":"post",
 "thumbnail":"content/thumbnails/test.jpeg",
 "slug":"getting-started-with-git",
