@@ -11,6 +11,9 @@ for blogfile in $FILES/*; do
     postJson=$postJson'{"path":"'$blogfile'" ,'$str'}'
 done
 postJson=$postJson']'
+REPLACE='}{'
+WITH='},{'
+postJson="${postJson//$REPLACE/$WITH}" 
 echo $postJson > $POST_METADATA_FILE
 
 
