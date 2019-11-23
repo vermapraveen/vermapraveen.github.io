@@ -3,7 +3,7 @@
 set -e
 
 FILES=content/posts
-POST_METADATA_FILE=content/posts.json
+POST_METADATA_FILE=content/metadata.json
 
 postJson='['
 for blogfile in $FILES/*; do

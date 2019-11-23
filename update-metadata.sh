@@ -17,7 +17,7 @@ for blogfile in $FILES/*; do
   echo $blogfile
 done  | jq -R -s -c 'split("\n")'
 
-POST_METADATA_FILE=content/posts.json
+POST_METADATA_FILE=content/metadata.json
 BUCKET_NAME="first part"
 OBJECT_NAME="first-part-1"
 TARGET_LOCATION="[ "Fiesta", "Focus", "Mustang" ]"
