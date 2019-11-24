@@ -10,8 +10,6 @@ function getBasicData() {
         .then(response => response.text())
         .then(text => {
             var actual_JSON = JSON.parse(text);
-
-            var showdn = new Showdown.converter();
             var elementToDisplay = document.getElementById('item-list');
 
             actual_JSON.forEach(function (obj) {
@@ -24,7 +22,6 @@ function getBasicData() {
                 aTag.innerText = obj.title;
 
                 elementToDisplay.appendChild(aTag);
-
             });
         });
 };
