@@ -28,9 +28,9 @@ function getHeaderComponent() {
     var header = document.createElement("DIV");
     header.setAttribute('class', "header");
 
-    var logoElement = document.createElement("DIV");
+    var logoElement = getAnchorComponent("/", "Home");
     logoElement.setAttribute('class', "logo");
-    logoElement.appendChild(getAnchorComponent("/", "Home"));
+
     header.appendChild(logoElement);
     
     var nav = getNavComponent();
@@ -86,9 +86,9 @@ function getNavComponent() {
 };
 
 function getMenuItem2() {
-    var aboutMenuItem = getMenuItemAsDiv("/src/about.html", "About Me", "nav-menu-item");
-    var blogsMenuItem = getMenuItemAsDiv("/src/blogs.html", "Blogs", "nav-menu-item");
-    var projectsMenuItem = getMenuItemAsDiv("/src/projects.html", "Projects", "nav-menu-item");
+    var aboutMenuItem = getAnchorComponent("/src/about.html", "About Me");
+    var blogsMenuItem = getAnchorComponent("/src/blogs.html", "Blogs");
+    var projectsMenuItem = getAnchorComponent("/src/projects.html", "Projects");
     return { aboutMenuItem, blogsMenuItem, projectsMenuItem };
 }
 
