@@ -1,22 +1,48 @@
 document.addEventListener("DOMContentLoaded", function (event) {
-    var head = document.getElementsByTagName("HEAD")[0];  
+    var head = document.getElementsByTagName("HEAD")[0];
     head.append(getMasterPageTitle("Praveen K Verma"));
     head.append(getMasterPageStyles("/src/styles/main.css"));
 
-    var body = document.getElementsByTagName("BODY")[0]; 
+    var body = document.getElementsByTagName("BODY")[0];
+
+    var bodyConteiner = document.createElement('div');
+    bodyConteiner.setAttribute('class', 'main-container');
+
+    const currentBodyChildren = body.children;
+
+    do {
+        bodyConteiner.appendChild(currentBodyChildren[0]);
+    }
+    while (currentBodyChildren.length > 0);
+
+    body.appendChild(bodyConteiner);
 
     var header = getHeaderComponent();
-    var nav = getNavComponent();
-    header.appendChild(nav);
-
     body.insertBefore(header, body.firstChild);
+
+    var footer = getFooterComponent();
+    body.append(footer);
 });
 
 function getHeaderComponent() {
     var header = document.createElement("DIV");
     header.setAttribute('class', "header");
+    var nav = getNavComponent();
+    header.appendChild(nav);
 
     return header;
+};
+
+function getFooterComponent() {
+    var footer = document.createElement("DIV");
+    footer.setAttribute('class', "footer");
+
+    var footerItem1 = document.createElement("DIV");
+    footerItem1.setAttribute('class', "footer-item");
+    footerItem1.innerText="Copyright by Praveen K Verma"
+    footer.appendChild(footerItem1);
+
+    return footer;
 };
 
 function getMasterPageTitle(titleText) {
