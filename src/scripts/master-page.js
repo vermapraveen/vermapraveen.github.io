@@ -27,6 +27,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
 function getHeaderComponent() {
     var header = document.createElement("DIV");
     header.setAttribute('class', "header");
+
+    var logoElement = document.createElement("DIV");
+    logoElement.setAttribute('class', "logo");
+    logoElement.appendChild(getAnchorComponent("/", "Home"));
+    header.appendChild(logoElement);
+    
     var nav = getNavComponent();
     header.appendChild(nav);
 
@@ -70,9 +76,8 @@ function getMasterPageScripts(scriptPath) {
 function getNavComponent() {
     var navItem = document.createElement("DIV");
     navItem.setAttribute('class', 'nav-menu')
-    var { homeMenuItem, aboutMenuItem, blogsMenuItem, projectsMenuItem } = getMenuItem2();
+    var { aboutMenuItem, blogsMenuItem, projectsMenuItem } = getMenuItem2();
 
-    navItem.appendChild(homeMenuItem);
     navItem.appendChild(aboutMenuItem);
     navItem.appendChild(blogsMenuItem);
     navItem.appendChild(projectsMenuItem);
@@ -81,11 +86,10 @@ function getNavComponent() {
 };
 
 function getMenuItem2() {
-    var homeMenuItem = getMenuItemAsDiv("/", "Home", "nav-menu-item");
     var aboutMenuItem = getMenuItemAsDiv("/src/about.html", "About Me", "nav-menu-item");
     var blogsMenuItem = getMenuItemAsDiv("/src/blogs.html", "Blogs", "nav-menu-item");
     var projectsMenuItem = getMenuItemAsDiv("/src/projects.html", "Projects", "nav-menu-item");
-    return { homeMenuItem, aboutMenuItem, blogsMenuItem, projectsMenuItem };
+    return { aboutMenuItem, blogsMenuItem, projectsMenuItem };
 }
 
 function getMenuItemAsDiv(link, displayTxt, itemClass) {
