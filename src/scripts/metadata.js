@@ -7,18 +7,16 @@ function getBasicData() {
         .then(response => response.text())
         .then(text => {
             var actual_JSON = JSON.parse(text);
-            var elementToDisplay = document.getElementById('item-list');
-            var menu = getMenuComponent();
+            var elementToDisplay = document.getElementById('blog-list');
 
             actual_JSON.forEach(function (obj) {
                 if (obj.draft) {
                     return;
                 }
 
-                var aboutMenuItem = getMenuItemComponent('blog.html?id=' + obj.path, obj.title);
-                menu.appendChild(aboutMenuItem);
+                var menuItem = getMenuItemAsDiv('blog.html?id=' + obj.path, obj.title, "blog-list-item");
+                elementToDisplay.appendChild(menuItem);
             });
 
-            elementToDisplay.appendChild(menu);
         });
 };

@@ -3,36 +3,21 @@ document.addEventListener("DOMContentLoaded", function (event) {
     head.append(getMasterPageTitle("Praveen K Verma"));
     head.append(getMasterPageStyles("/src/styles/main.css"));
 
-    var body = document.getElementsByTagName("BODY")[0];  
+    var body = document.getElementsByTagName("BODY")[0]; 
+
     var header = getHeaderComponent();
+    var nav = getNavComponent();
+    header.appendChild(nav);
 
     body.insertBefore(header, body.firstChild);
 });
 
-function getMasterPageHtml() {
-    fetch("/src/components/master-page.html")
-        .then(response => response.text())
-        .then(text => {
-            var parser = new DOMParser();
-            var doc = parser.parseFromString(text, "text/html");
-            return doc;
-        });
+function getHeaderComponent() {
+    var header = document.createElement("DIV");
+    header.setAttribute('class', "header");
+
+    return header;
 };
-
-function getMasterPage2() {
-    var doc = document.implementation.createHTMLDocument();
-
-    doc.head.append(getMasterPageTitle("Praveen K Verma"));
-    doc.head.append(getMasterPageStyles("/src/styles/main.css"));
-    doc.body.append(getMasterPageScripts("/src/scripts/menu.js"));
-
-    return doc;
-}
-
-function getMasterPageBody() {
-    var doc = document.implementation.createHTMLDocument();
-    doc.body.append('Hello World!');
-}
 
 function getMasterPageTitle(titleText) {
     var title = document.createElement("TITLE");
@@ -58,41 +43,27 @@ function getMasterPageScripts(scriptPath) {
 
 function getNavComponent() {
     var navItem = document.createElement("NAV");
-    var siteMenu = createSiteMenu();
-    navItem.appendChild(siteMenu);
+    var { homeMenuItem, aboutMenuItem, blogsMenuItem, projectsMenuItem } = getMenuItem2();
+
+    navItem.appendChild(homeMenuItem);
+    navItem.appendChild(aboutMenuItem);
+    navItem.appendChild(blogsMenuItem);
+    navItem.appendChild(projectsMenuItem);
+
     return navItem;
 };
 
-function createSiteMenu() {
-    var menu = getMenuComponent();
-    var homeMenuItem = getMenuItemComponent("/", "Home");
-    menu.appendChild(homeMenuItem);
-    var aboutMenuItem = getMenuItemComponent("/src/about.html", "About Me");
-    menu.appendChild(aboutMenuItem);
-    var blogsMenuItem = getMenuItemComponent("/src/blogs.html", "Blogs");
-    menu.appendChild(blogsMenuItem);
-    var projectsMenuItem = getMenuItemComponent("/src/projects.html", "Projects");
-    menu.appendChild(projectsMenuItem);
-    return menu;
+function getMenuItem2() {
+    var homeMenuItem = getMenuItemAsDiv("/", "Home", "nav-item");
+    var aboutMenuItem = getMenuItemAsDiv("/src/about.html", "About Me", "nav-item");
+    var blogsMenuItem = getMenuItemAsDiv("/src/blogs.html", "Blogs", "nav-item");
+    var projectsMenuItem = getMenuItemAsDiv("/src/projects.html", "Projects", "nav-item");
+    return { homeMenuItem, aboutMenuItem, blogsMenuItem, projectsMenuItem };
 }
 
-function getHeaderComponent() {
-    var header = document.createElement("DIV");
-    header.setAttribute('class', "header");
-
-    var nav=getNavComponent();
-    header.appendChild(nav);
-
-    return header;
-};
-
-function getMenuComponent() {
-    var menu = document.createElement("UL");
-    return menu;
-};
-
-function getMenuItemComponent(link, displayTxt) {
-    var menuItem = document.createElement("LI");
+function getMenuItemAsDiv(link, displayTxt, itemClass) {
+    var menuItem = document.createElement("DIV");
+    menuItem.setAttribute('class', itemClass);
     var menuLink = getAnchorComponent(link, displayTxt);
     menuItem.appendChild(menuLink);
     return menuItem;

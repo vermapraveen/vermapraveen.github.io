@@ -1,4 +1,9 @@
 * 
+body {
+  color: red;
+  background-color: peru
+}
+
   [class*="col-"] {
     float: left;
   }
@@ -23,6 +28,7 @@
   .header {
     background-color: gray;
     color: #ffffff;
+    display: flex;
   }
   
   .header ul {
@@ -55,22 +61,13 @@
     background-color: pink;
   }
 
-body {
-    color: red;
-    background-color: peru
+nav{
+    background: brown;
 }
 
-#item-list ul {
-  list-style-type: none;
-  margin: 10;
-  padding: 10;
-}
-
-#item-list li {
-  background-color: blue;
+div.nav-item{
   color: yellow;
 }
 
-#item-list li:hover {
-  background-color: red;
-}
+
+
