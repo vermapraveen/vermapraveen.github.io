@@ -42,7 +42,8 @@ function getMasterPageScripts(scriptPath) {
 }
 
 function getNavComponent() {
-    var navItem = document.createElement("NAV");
+    var navItem = document.createElement("DIV");
+    navItem.setAttribute('class', 'nav-menu')
     var { homeMenuItem, aboutMenuItem, blogsMenuItem, projectsMenuItem } = getMenuItem2();
 
     navItem.appendChild(homeMenuItem);
@@ -54,10 +55,10 @@ function getNavComponent() {
 };
 
 function getMenuItem2() {
-    var homeMenuItem = getMenuItemAsDiv("/", "Home", "nav-item");
-    var aboutMenuItem = getMenuItemAsDiv("/src/about.html", "About Me", "nav-item");
-    var blogsMenuItem = getMenuItemAsDiv("/src/blogs.html", "Blogs", "nav-item");
-    var projectsMenuItem = getMenuItemAsDiv("/src/projects.html", "Projects", "nav-item");
+    var homeMenuItem = getMenuItemAsDiv("/", "Home", "nav-menu-item");
+    var aboutMenuItem = getMenuItemAsDiv("/src/about.html", "About Me", "nav-menu-item");
+    var blogsMenuItem = getMenuItemAsDiv("/src/blogs.html", "Blogs", "nav-menu-item");
+    var projectsMenuItem = getMenuItemAsDiv("/src/projects.html", "Projects", "nav-menu-item");
     return { homeMenuItem, aboutMenuItem, blogsMenuItem, projectsMenuItem };
 }
 

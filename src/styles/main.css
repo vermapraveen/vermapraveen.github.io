@@ -61,13 +61,14 @@ body {
     background-color: pink;
   }
 
-nav{
-    background: brown;
+.nav-menu{
+    background: azure;
 }
 
-div.nav-item{
+.nav-menu-item{
   color: yellow;
 }
 
-
-
+.nav-menu-item:hover {
+  background-color: pink;
+}
