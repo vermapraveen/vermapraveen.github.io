@@ -1,8 +1,8 @@
 ---
 "date":"2015-09-24",
-"title":"First",
+"title":"This is a long title for article #1",
 "template":"post",
-"thumbnail":"content/thumbnails/test.jpeg",
+"thumbnail":"content/thumbnails/1.png",
 "slug":"getting-started-with-git",
 "categories":[ "cat1", "Focus", "Mustang" ],
 "tags":[ "Fiesta", "Focus", "Mustang" ] 

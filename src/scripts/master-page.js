@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function (event) {
     var meta = document.createElement('meta');
-    meta.name="viewport";
+    meta.name = "viewport";
     meta.httpEquiv = "X-UA-Compatible";
     meta.content = "width=device-width, initial-scale=1";
 
@@ -110,6 +110,8 @@ function getMenuItemAsDiv(link, displayTxt, itemClass) {
 function getAnchorComponent(link, displayTxt) {
     var anchor = document.createElement('a');
     anchor.setAttribute('href', link);
-    anchor.innerText = displayTxt;
+    if (displayTxt) {
+        anchor.innerText = displayTxt;
+    }
     return anchor;
 };
