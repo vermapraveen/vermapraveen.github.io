@@ -1,5 +1,12 @@
 document.addEventListener("DOMContentLoaded", function (event) {
+    var meta = document.createElement('meta');
+    meta.name="viewport";
+    meta.httpEquiv = "X-UA-Compatible";
+    meta.content = "width=device-width, initial-scale=1, IE=edge";
+
     var head = document.getElementsByTagName("HEAD")[0];
+    head.insertBefore(meta, head.firstChild);
+
     head.append(getMasterPageTitle("Praveen K Verma"));
     head.append(getMasterPageStyles("/src/styles/main.css"));
 
@@ -32,7 +39,7 @@ function getHeaderComponent() {
     logoElement.setAttribute('class', "logo");
 
     header.appendChild(logoElement);
-    
+
     var nav = getNavComponent();
     header.appendChild(nav);
 
@@ -45,7 +52,7 @@ function getFooterComponent() {
 
     var footerItem1 = document.createElement("DIV");
     footerItem1.setAttribute('class', "footer-item");
-    footerItem1.innerText="Copyright by Praveen K Verma"
+    footerItem1.innerText = "Copyright by Praveen K Verma"
     footer.appendChild(footerItem1);
 
     return footer;
