@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     var meta = document.createElement('meta');
     meta.name="viewport";
     meta.httpEquiv = "X-UA-Compatible";
-    meta.content = "width=device-width, initial-scale=1, IE=edge";
+    meta.content = "width=device-width, initial-scale=1";
 
     var head = document.getElementsByTagName("HEAD")[0];
     head.insertBefore(meta, head.firstChild);
@@ -94,7 +94,7 @@ function getNavComponent() {
 
 function getMenuItem2() {
     var aboutMenuItem = getAnchorComponent("/src/about.html", "About Me");
-    var blogsMenuItem = getAnchorComponent("/src/blogs.html", "Blogs");
+    var blogsMenuItem = getAnchorComponent("/src/blog-list.html", "Articles");
     var projectsMenuItem = getAnchorComponent("/src/projects.html", "Projects");
     return { aboutMenuItem, blogsMenuItem, projectsMenuItem };
 }

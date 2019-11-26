@@ -10,7 +10,7 @@ function getPostData(markdownFileName) {
         .then(contentResponse => contentResponse.text())
         .then(contentText => {
             var showdn = new Showdown.converter();
-            var elementToDisplay = document.getElementById('data-markdown');
+            var elementToDisplay = document.getElementById('blog-container');
             var mdText = showdn.makeHtml(unescapeHTML(contentText));
             //applyFirstStyle(mdText);										
             var divToAdd = document.createElement("DIV");
