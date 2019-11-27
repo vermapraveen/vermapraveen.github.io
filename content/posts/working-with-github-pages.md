@@ -1,11 +1,10 @@
 ---
 "date":"2019-11-26",
-"title":"Working with GitHub-Pages. Learnings.",
-"template":"post",
-"thumbnail":"content/thumbnails/2.png",
+"title":"Working with GitHub-Pages",
+"thumbnail":"content/thumbnails/5.png",
 "slug":"working-with-github-pages",
-"categories":[ "cat1", "Focus", "Mustang" ],
-"tags":[ "GithubPages", "JavaScript", "CSS" ]
+"tags":[ "GithubPages", "GitHub Actions" ],
+"draft":"true"
 
 ---
 

@@ -126,6 +126,9 @@ body {
   display: inline-block;
   text-align: left;
 } 
+#draft {
+  color: red;
+} 
 
 @media screen and (max-width: 500px) {
   .header a {
