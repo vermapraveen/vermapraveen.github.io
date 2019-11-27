@@ -1,21 +1,14 @@
 ---
-"date":"2015-09-24",
-"title":"This is a long title for article # 2",
+"date":"2019-11-26",
+"title":"Working with GitHub-Pages. Learnings.",
 "template":"post",
 "thumbnail":"content/thumbnails/2.png",
-"slug":"getting-started-with-git",
+"slug":"working-with-github-pages",
 "categories":[ "cat1", "Focus", "Mustang" ],
-"tags":[ "Fiesta", "Focus", "Mustang" ]
+"tags":[ "GithubPages", "JavaScript", "CSS" ]
 
 ---
 
-# Second
+# What is GitHub Pages
 
-```
-var x=1;
-
-entry.forEach(function(item){
-    x=x++;
-Console.log('x')
-})
-```
+This is an easy way to publish your website. I am using GitHub pages for learning on how to create and publish a *static* website. 
