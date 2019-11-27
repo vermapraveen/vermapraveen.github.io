@@ -13,6 +13,7 @@
 
 ```
 var x=1;
+
 entry.forEach(function(item){
     x=x++;
 Console.log('x')
