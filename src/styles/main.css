@@ -72,6 +72,11 @@ body {
 
 .blog-info-container-1{
   text-align: center;
+  border: 2px solid transparent;
+  border-bottom-color: azure;
+  padding: 1rem 2rem;
+  margin: 0 -2rem;
+  background-color: black;
 }
 
 .blog-info-container-2 {
@@ -81,11 +86,6 @@ body {
 
 .blogItemInfoContainer {
   display: flex;
-  border: 2px solid transparent;
-  border-bottom-color: azure;
-  padding: 1rem 2rem;
-  margin: 0 -2rem;
-  background-color: black;
 }
 
 .blogItemTxtContainer {
