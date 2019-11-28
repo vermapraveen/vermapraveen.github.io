@@ -157,6 +157,9 @@ body {
 
 @media screen and (min-width: 800px) {
   .blog-markup {
-    max-width: 800px;
+    width: 800px;
+  }
+  .blogItemInfoContainer{
+    width: 800px;
   }
 }
