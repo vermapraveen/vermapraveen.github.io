@@ -32,8 +32,17 @@ function getPostData(markdownFileName) {
 
             blogContentDiv.appendChild(blogMarkupDiv);
 
-            var matadataDiv = document.createElement("DIV");
-            matadataDiv.setAttribute('class', 'blogItemInfoContainer');
+            var blogContainer_1 = document.createElement("DIV");
+            blogContainer_1.setAttribute('class', 'blog-info-container-1');
+
+            var blogContainer_2 = document.createElement("DIV");
+            blogContainer_2.setAttribute('class', 'blog-info-container-2');
+
+            var blogContainer_3 = document.createElement("DIV");
+            blogContainer_3.setAttribute('class', 'blog-info-container-3');
+
+            blogContainer_1.appendChild(blogContainer_2);
+            blogContainer_2.appendChild(blogContainer_3);
 
             var jsontext = '{' + metadataElement.innerText + '}';
             var postMeta = JSON.parse(jsontext);
@@ -52,7 +61,7 @@ function getPostData(markdownFileName) {
                 thumbnailDivToAdd.setAttribute("src", '/' + postMeta.thumbnail);
 
                 thumbnailContainer.appendChild(thumbnailDivToAdd);
-                matadataDiv.appendChild(thumbnailContainer);
+                blogContainer_3.appendChild(thumbnailContainer);
 
 
                 var blogItemTxtContainer = document.createElement("DIV");
@@ -85,10 +94,10 @@ function getPostData(markdownFileName) {
 
                 blogItemTxtContainer.appendChild(tagListToAdd);
 
-                matadataDiv.appendChild(blogItemTxtContainer);
+                blogContainer_3.appendChild(blogItemTxtContainer);
             }
 
-            elementToDisplay.appendChild(matadataDiv);
+            elementToDisplay.appendChild(blogContainer_1);
             elementToDisplay.appendChild(blogContentDiv);
         });
 };
