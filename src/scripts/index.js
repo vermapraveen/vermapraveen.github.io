@@ -39,7 +39,7 @@ function getPostData(markdownFileName) {
             blogContainer_2.setAttribute('class', 'blog-info-container-2');
 
             var blogContainer_3 = document.createElement("DIV");
-            blogContainer_3.setAttribute('class', 'blog-info-container-3');
+            blogContainer_3.setAttribute('class', 'blogItemInfoContainer');
 
             blogContainer_1.appendChild(blogContainer_2);
             blogContainer_2.appendChild(blogContainer_3);
