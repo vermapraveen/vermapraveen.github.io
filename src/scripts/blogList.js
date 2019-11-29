@@ -12,58 +12,25 @@ function getBasicData() {
         .then(response => response.text())
         .then(text => {
             var actual_JSON = JSON.parse(text);
-            var elementToDisplay = document.getElementById('blog-item-container');
+            var blogList = document.getElementById('blog-item-container');
 
-            actual_JSON.forEach(function (obj) {
-                var menuItem = getBlogItemCompoenent(obj);
-                elementToDisplay.appendChild(menuItem);
+            actual_JSON.forEach(function (blogInfoJson) {
+                var blogItem = getBlogItemCompoenent(blogInfoJson);
+                blogList.appendChild(blogItem);
             });
 
         });
 
-    function getBlogItemCompoenent(aBlogListObj) {
-        var menuLink = HtmlComponentCreator.getAnchorComponent('blog.html?id=' + aBlogListObj.path);
+    function getBlogItemCompoenent(blogInfoJson) {
+        var menuLink = HtmlComponentCreator.getAnchorComponent('blog.html?id=' + blogInfoJson.path);
         menuLink.setAttribute('class', 'blogItemLink');
 
         var blogItemInfoContainer = document.createElement("DIV");
         blogItemInfoContainer.setAttribute('class', 'blogItemInfoContainer');
 
-        var blogItemImgContainer = document.createElement("DIV");
-        blogItemImgContainer.setAttribute('class', 'blogItemImgContainer');
+        var blogItemTxtContainer =  blogInfoJson.draft ? HtmlComponentCreator.getDraftBlogDetails(blogInfoJson.title) :  HtmlComponentCreator.getPublishedBlogDetails(blogInfoJson.title, blogInfoJson.date);
 
-        var thumbnailDivToAdd = document.createElement("IMG");
-        thumbnailDivToAdd.setAttribute('class', "blogThumbnail");
-        thumbnailDivToAdd.setAttribute("src", '/' + aBlogListObj.thumbnail);
-
-        blogItemImgContainer.appendChild(thumbnailDivToAdd);
-
-        var blogItemTxtContainer = document.createElement("DIV");
-        blogItemTxtContainer.setAttribute('class', 'blogItemTxtContainer');
-
-
-        var blogItemTxt = document.createElement("h2");
-        blogItemTxt.setAttribute('class', 'blogItemTxt');
-
-        var textNode = document.createTextNode(aBlogListObj.title);
-        blogItemTxt.appendChild(textNode);
-        blogItemTxtContainer.appendChild(blogItemTxt);
-
-        if (aBlogListObj.draft) {
-            var draftSpan = document.createElement('span');
-            draftSpan.setAttribute('id', 'draft');
-            draftSpan.innerText = "[DRAFT]";
-            blogItemTxt.appendChild(draftSpan);
-        }
-        else {
-            var blogItemDateContainer = document.createElement("DIV");
-            blogItemDateContainer.setAttribute('class', 'blogItemDateContainer');
-            var textDateNode = document.createTextNode(aBlogListObj.date);
-            blogItemDateContainer.appendChild(textDateNode);
-
-            blogItemTxtContainer.appendChild(blogItemDateContainer);
-        }
-
-        blogItemInfoContainer.appendChild(blogItemImgContainer);
+        blogItemInfoContainer.appendChild(HtmlComponentCreator.getBlogThumbnailContainer('/' + blogInfoJson.thumbnail));
         blogItemInfoContainer.appendChild(blogItemTxtContainer);
 
         var blogContainer_1 = document.createElement("DIV");

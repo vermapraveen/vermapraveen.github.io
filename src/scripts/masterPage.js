@@ -13,17 +13,15 @@ const loadMasterPage = async () => {
 
     var body = document.getElementsByTagName("BODY")[0];
 
-    var bodyConteiner = document.createElement('div');
-    bodyConteiner.setAttribute('class', 'main-container');
-
-    const currentBodyChildren = body.children;
+    var bodyContainer = document.createElement('div');
+    bodyContainer.setAttribute('class', 'main-container');
 
     do {
-        bodyConteiner.appendChild(currentBodyChildren[0]);
+        bodyContainer.appendChild(body.children[0]);
     }
-    while (currentBodyChildren.length > 0);
+    while (body.children.length > 0);
 
-    body.appendChild(bodyConteiner);
+    body.appendChild(bodyContainer);
 
     var header = HtmlComponentCreator.getHeaderComponent();
     body.insertBefore(header, body.firstChild);

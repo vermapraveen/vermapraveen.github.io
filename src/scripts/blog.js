@@ -6,7 +6,6 @@ import HtmlComponentCreator from '/src/scripts/htmlComponents.js'
 const getPostData = async()=>{
 
     var markdownFileName = window.location.search.substring(4);
-    // document.getElementById('editOnGithub').setAttribute("href", "https://github.com/vermapraveen/vermapraveen.github.io/blob/master/" + markdownFileName)
 
     fetch('/' + markdownFileName)
     .then(contentResponse => contentResponse.text())
@@ -49,15 +48,8 @@ const getPostData = async()=>{
         var postMeta = JSON.parse(jsontext);
 
         if (postMeta) {
-            var thumbnailContainer = document.createElement("DIV");
-            thumbnailContainer.classList.add("blogItemImgContainer");
-
-            var thumbnailDivToAdd = document.createElement("IMG");
-            thumbnailDivToAdd.setAttribute("class", "blogThumbnail");
-            thumbnailDivToAdd.setAttribute("src", '/' + postMeta.thumbnail);
-
-            thumbnailContainer.appendChild(thumbnailDivToAdd);
-            blogContainer_3.appendChild(thumbnailContainer);
+            
+            blogContainer_3.appendChild(HtmlComponentCreator.getBlogThumbnailContainer('/' + postMeta.thumbnail));
 
 
             var blogItemTxtContainer = document.createElement("DIV");

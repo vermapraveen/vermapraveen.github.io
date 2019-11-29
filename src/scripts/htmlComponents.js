@@ -100,6 +100,57 @@ const HtmlComponentCreator = {
     return editLinkContainer;
   },
 
+  getBlogThumbnail: (imgSrc) => {
+    var img = document.createElement("IMG");
+    img.setAttribute('class', "blogThumbnail");
+    img.setAttribute("src", imgSrc);
+    return img;
+  },
+
+  getBlogThumbnailContainer: (imgSrc) => {
+    var blogThumbnailContainer = document.createElement("DIV");
+    blogThumbnailContainer.setAttribute('class', 'blogItemImgContainer');
+
+    blogThumbnailContainer.appendChild( HtmlComponentCreator.getBlogThumbnail(imgSrc));
+
+    return blogThumbnailContainer;
+  },
+
+  getBlogDetails: (blogTitle) => {
+    var blogItemTxtContainer = document.createElement("DIV");
+    blogItemTxtContainer.setAttribute('class', 'blogItemTxtContainer');
+
+    var blogItemTxt = document.createElement("h2");
+    blogItemTxt.setAttribute('class', 'blogItemTxt');
+
+    var textNode = document.createTextNode(blogTitle);
+    blogItemTxt.appendChild(textNode);
+    blogItemTxtContainer.appendChild(blogItemTxt);
+    return blogItemTxtContainer;
+  },
+
+  getDraftBlogDetails: (blogTitle) => {
+    var blogItemTxtContainer = HtmlComponentCreator.getBlogDetails(blogTitle);
+    var draftSpan = document.createElement('span');
+    draftSpan.setAttribute('id', 'draft');
+    draftSpan.innerText = "[DRAFT]";
+    blogItemTxtContainer.appendChild(draftSpan);
+
+    return blogItemTxtContainer;
+  },
+
+  getPublishedBlogDetails: (blogTitle, publishedDate) => {
+    var blogItemTxtContainer = HtmlComponentCreator.getBlogDetails(blogTitle);
+    var blogItemDateContainer = document.createElement("DIV");
+    blogItemDateContainer.setAttribute('class', 'blogItemDateContainer');
+    var textDateNode = document.createTextNode(publishedDate);
+    blogItemDateContainer.appendChild(textDateNode);
+
+    blogItemTxtContainer.appendChild(blogItemDateContainer);
+
+    return blogItemTxtContainer;
+  },
+
 };
 
 export default HtmlComponentCreator;
