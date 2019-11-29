@@ -1,6 +1,11 @@
-document.addEventListener("DOMContentLoaded", function (event) {
+ 
+"use strict";
+
+import HtmlComponentCreator from '/src/scripts/htmlComponents.js'
+
+const loadBlogList = async () =>{
     getBasicData();
-});
+}
 
 function getBasicData() {
     fetch("/content/metadata.json")
@@ -17,7 +22,7 @@ function getBasicData() {
         });
 
     function getBlogItemCompoenent(aBlogListObj) {
-        var menuLink = getAnchorComponent('blog.html?id=' + aBlogListObj.path);
+        var menuLink = HtmlComponentCreator.getAnchorComponent('blog.html?id=' + aBlogListObj.path);
         menuLink.setAttribute('class', 'blogItemLink');
 
         var blogItemInfoContainer = document.createElement("DIV");
@@ -76,3 +81,6 @@ function getBasicData() {
 
     };
 };
+
+// Listen on page load:
+window.addEventListener('load', loadBlogList);
