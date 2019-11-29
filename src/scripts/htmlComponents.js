@@ -49,7 +49,11 @@ const HtmlComponentCreator = {
   getNavComponent: () => {
     var navItem = document.createElement("DIV");
     navItem.setAttribute("class", "nav-menu");
-    var { aboutMenuItem, blogsMenuItem, projectsMenuItem } = HtmlComponentCreator.getMenuItem2();
+    var {
+      aboutMenuItem,
+      blogsMenuItem,
+      projectsMenuItem
+    } = HtmlComponentCreator.getMenuItem2();
 
     navItem.appendChild(aboutMenuItem);
     navItem.appendChild(blogsMenuItem);
@@ -86,42 +90,45 @@ const HtmlComponentCreator = {
     return { aboutMenuItem, blogsMenuItem, projectsMenuItem };
   },
 
-  getGitHubEditComponent: (filePath) => {
+  getGitHubEditComponent: filePath => {
     var editLinkContainer = document.createElement("DIV");
     editLinkContainer.setAttribute("class", "edit-link-container");
 
     var editLink = HtmlComponentCreator.getAnchorComponent(
-      "https://github.com/vermapraveen/vermapraveen.github.io/blob/master/content/posts/"+filePath,
+      "https://github.com/vermapraveen/vermapraveen.github.io/blob/master/content/posts/" +
+        filePath,
       "Edit on GitHub"
-    )
+    );
 
     editLinkContainer.appendChild(editLink);
 
     return editLinkContainer;
   },
 
-  getBlogThumbnail: (imgSrc) => {
+  getBlogThumbnail: imgSrc => {
     var img = document.createElement("IMG");
-    img.setAttribute('class', "blogThumbnail");
+    img.setAttribute("class", "blogThumbnail");
     img.setAttribute("src", imgSrc);
     return img;
   },
 
-  getBlogThumbnailContainer: (imgSrc) => {
+  getBlogThumbnailContainer: imgSrc => {
     var blogThumbnailContainer = document.createElement("DIV");
-    blogThumbnailContainer.setAttribute('class', 'blogItemImgContainer');
+    blogThumbnailContainer.setAttribute("class", "blogItemImgContainer");
 
-    blogThumbnailContainer.appendChild( HtmlComponentCreator.getBlogThumbnail(imgSrc));
+    blogThumbnailContainer.appendChild(
+      HtmlComponentCreator.getBlogThumbnail(imgSrc)
+    );
 
     return blogThumbnailContainer;
   },
 
-  getBlogDetails: (blogTitle) => {
+  getBlogDetails: blogTitle => {
     var blogItemTxtContainer = document.createElement("DIV");
-    blogItemTxtContainer.setAttribute('class', 'blogItemTxtContainer');
+    blogItemTxtContainer.setAttribute("class", "blogItemTxtContainer");
 
     var blogItemTxt = document.createElement("h2");
-    blogItemTxt.setAttribute('class', 'blogItemTxt');
+    blogItemTxt.setAttribute("class", "blogItemTxt");
 
     var textNode = document.createTextNode(blogTitle);
     blogItemTxt.appendChild(textNode);
@@ -129,10 +136,10 @@ const HtmlComponentCreator = {
     return blogItemTxtContainer;
   },
 
-  getDraftBlogDetails: (blogTitle) => {
+  getDraftBlogDetails: blogTitle => {
     var blogItemTxtContainer = HtmlComponentCreator.getBlogDetails(blogTitle);
-    var draftSpan = document.createElement('span');
-    draftSpan.setAttribute('id', 'draft');
+    var draftSpan = document.createElement("span");
+    draftSpan.setAttribute("id", "draft");
     draftSpan.innerText = "[DRAFT]";
     blogItemTxtContainer.appendChild(draftSpan);
 
@@ -142,7 +149,7 @@ const HtmlComponentCreator = {
   getPublishedBlogDetails: (blogTitle, publishedDate) => {
     var blogItemTxtContainer = HtmlComponentCreator.getBlogDetails(blogTitle);
     var blogItemDateContainer = document.createElement("DIV");
-    blogItemDateContainer.setAttribute('class', 'blogItemDateContainer');
+    blogItemDateContainer.setAttribute("class", "blogItemDateContainer");
     var textDateNode = document.createTextNode(publishedDate);
     blogItemDateContainer.appendChild(textDateNode);
 
@@ -151,6 +158,43 @@ const HtmlComponentCreator = {
     return blogItemTxtContainer;
   },
 
+  getBlogInfoContainerDivs: (
+    path,
+    blogTitle,
+    blogThumbnailPath,
+    isDraft,
+    publishedDate
+  ) => {
+    var menuLink = HtmlComponentCreator.getAnchorComponent(
+      "blog.html?id=" + path
+    );
+    menuLink.setAttribute("class", "blogItemLink");
+
+    var blogItemInfoContainer = document.createElement("DIV");
+    blogItemInfoContainer.setAttribute("class", "blogItemInfoContainer");
+
+    var blogItemTxtContainer = isDraft
+      ? HtmlComponentCreator.getDraftBlogDetails(blogTitle)
+      : HtmlComponentCreator.getPublishedBlogDetails(blogTitle, publishedDate);
+
+    blogItemInfoContainer.appendChild(
+      HtmlComponentCreator.getBlogThumbnailContainer("/" + blogThumbnailPath)
+    );
+    blogItemInfoContainer.appendChild(blogItemTxtContainer);
+
+    var blogContainer_1 = document.createElement("DIV");
+    blogContainer_1.setAttribute("class", "blog-info-container-1");
+
+    var blogContainer_2 = document.createElement("DIV");
+    blogContainer_2.setAttribute("class", "blog-info-container-2");
+
+    blogContainer_1.appendChild(blogContainer_2);
+    blogContainer_2.appendChild(blogItemInfoContainer);
+
+    menuLink.appendChild(blogContainer_1);
+
+    return menuLink;
+  }
 };
 
 export default HtmlComponentCreator;
