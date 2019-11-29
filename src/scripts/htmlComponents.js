@@ -85,6 +85,21 @@ const HtmlComponentCreator = {
     );
     return { aboutMenuItem, blogsMenuItem, projectsMenuItem };
   },
+
+  getGitHubEditComponent: (filePath) => {
+    var editLinkContainer = document.createElement("DIV");
+    editLinkContainer.setAttribute("class", "edit-link-container");
+
+    var editLink = HtmlComponentCreator.getAnchorComponent(
+      "https://github.com/vermapraveen/vermapraveen.github.io/blob/master/content/posts/"+filePath,
+      "Edit on GitHub"
+    )
+
+    editLinkContainer.appendChild(editLink);
+
+    return editLinkContainer;
+  },
+
 };
 
 export default HtmlComponentCreator;
