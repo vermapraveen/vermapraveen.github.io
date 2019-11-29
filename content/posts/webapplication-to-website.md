@@ -16,19 +16,18 @@ For pure learning purpose.
 
 I have been to many Web projects which developed by using some framework. But I never developed any website purely in html/css/javascript. And when I tried, it's painful. I have lost touch. 
 
-Framework and libraries like angular/reactjs/aspnet MVC makes you very productive but it abstracts you from building blocks. Nothing against them, fact is, you can't live without them in today's web worlds.
+Framework and libraries like angular/reactjs/aspnet MVC makes you very productive but it abstracts you from building blocks. Nothing against them, fact is, you can't live without them in today's web worlds. But I want to learn basics.
 
 *Hope I'm not the only one having this feeling.*
 
 ## Terminologies
-I did NOT want to use term ***static website***, as this means to use html/css only. But I want to use and learn javascript also. A lot of javascript will be used.
-#### Simple Plain Website
+#### Static Website
 We would have plain HTML, plain CSS and plain javascript. 
 There would only be GET calls. We are not saving anything back. Though we will use third-party *non-magical* utility javascript libraries.
 #### WebApplication
-These are served by WebServer but after extra logic been executed. Shopping Website: which need to save your cart and payment logic, or banking website, social network sites etc. Magic happens on server side code. It's awesome, but complicated.
+These are served by WebServer after extra logic been executed. Shopping Website: which need to save your cart and payment logic, or banking website, social network sites etc. Magic happens on server side code. It's awesome, but complicated.
 
-## Benefits of Simple Plain Website over WebApplication 
+## Benefits of Static Website over WebApplication 
 I am not satisfy with my current knowledge in css/ html/ javascript and I am hoping to gain my knowledge back.
 
 I want to start writing my blog, and don't want to worry about managing code for blog admin, data. I am going to externalize this to GitHub.
