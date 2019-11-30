@@ -159,17 +159,11 @@ const HtmlComponentCreator = {
   },
 
   getBlogInfoContainerDivs: (
-    path,
     blogTitle,
     blogThumbnailPath,
     isDraft,
     publishedDate
   ) => {
-    var menuLink = HtmlComponentCreator.getAnchorComponent(
-      "blog.html?id=" + path
-    );
-    menuLink.setAttribute("class", "blogItemLink");
-
     var blogItemInfoContainer = document.createElement("DIV");
     blogItemInfoContainer.setAttribute("class", "blogItemInfoContainer");
 
@@ -191,10 +185,96 @@ const HtmlComponentCreator = {
     blogContainer_1.appendChild(blogContainer_2);
     blogContainer_2.appendChild(blogItemInfoContainer);
 
-    menuLink.appendChild(blogContainer_1);
+    return blogContainer_1;
+  },
+
+  getBlogInfoLink: (
+    path,
+    blogTitle,
+    blogThumbnailPath,
+    isDraft,
+    publishedDate
+  ) => {
+    var menuLink = HtmlComponentCreator.getAnchorComponent(
+      "blog.html?id=" + path
+    );
+    menuLink.setAttribute("class", "blogItemLink");
+
+    menuLink.appendChild(
+      HtmlComponentCreator.getBlogInfoContainerDivs(
+        blogTitle,
+        blogThumbnailPath,
+        isDraft,
+        publishedDate
+      )
+    );
 
     return menuLink;
-  }
+  },
+
+  unescapeHTML: text => {
+    return text
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'");
+  },
+
+  convertMdToHtml: (contentText, markdownFileName) => {
+    var showdn = new Showdown.converter();
+    var mdText = showdn.makeHtml(HtmlComponentCreator.unescapeHTML(contentText));
+    var elementToDisplay = document.getElementById("blog-container");
+    var blogContentDiv = document.createElement("DIV");
+    blogContentDiv.setAttribute("class", "blog-content");
+    var blogMarkupDiv = document.createElement("DIV");
+    blogMarkupDiv.setAttribute("class", "blog-markup");
+    blogMarkupDiv.innerHTML = mdText;
+    var metadataElement = blogMarkupDiv.getElementsByTagName("p")[0];
+    blogMarkupDiv.removeChild(metadataElement);
+    var hrBefore = blogMarkupDiv.getElementsByTagName("hr")[0];
+    var hrAfter = blogMarkupDiv.getElementsByTagName("hr")[1];
+    hrBefore.parentNode.removeChild(hrBefore);
+    hrAfter.parentNode.removeChild(hrAfter);
+    blogContentDiv.appendChild(blogMarkupDiv);
+    var jsontext = "{" + metadataElement.innerText + "}";
+    var postMeta = JSON.parse(jsontext);
+    elementToDisplay.appendChild(
+      HtmlComponentCreator.getBlogInfoContainerDivs(
+        postMeta.title,
+        postMeta.thumbnail,
+        postMeta.draft,
+        postMeta.date
+      )
+    );
+    elementToDisplay.appendChild(blogContentDiv);
+    let blogContainer = document.getElementsByClassName("main-container")[0];
+    let editOnGithubComponent = HtmlComponentCreator.getGitHubEditComponent(
+      markdownFileName
+    );
+    blogContainer.insertBefore(
+      editOnGithubComponent,
+      elementToDisplay.nextSibling
+    );
+  },
+
+  getMaterPage: () => {
+    var head = document.getElementsByTagName("HEAD")[0];
+    head.insertBefore(HtmlComponentCreator.getMeta(), head.firstChild);
+    head.append(HtmlComponentCreator.getPageTitle("Praveen K Verma"));
+    head.append(HtmlComponentCreator.getStyleComponent("/src/styles/main.css"));
+    var body = document.getElementsByTagName("BODY")[0];
+    var bodyContainer = document.createElement('div');
+    bodyContainer.setAttribute('class', 'main-container');
+    do {
+        bodyContainer.appendChild(body.children[0]);
+    } while (body.children.length > 0);
+    body.appendChild(bodyContainer);
+    var header = HtmlComponentCreator.getHeaderComponent();
+    body.insertBefore(header, body.firstChild);
+    var footer = HtmlComponentCreator.getFooterComponent();
+    body.append(footer);
+  },
 };
 
 export default HtmlComponentCreator;

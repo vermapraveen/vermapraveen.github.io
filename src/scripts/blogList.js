@@ -15,7 +15,7 @@ function getBasicData() {
 
       actual_JSON.forEach(function(blogInfoJson) {
         blogList.appendChild(
-          HtmlComponentCreator.getBlogInfoContainerDivs(
+          HtmlComponentCreator.getBlogInfoLink(
             blogInfoJson.path,
             blogInfoJson.title,
             blogInfoJson.thumbnail,
