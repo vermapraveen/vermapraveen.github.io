@@ -1,5 +1,5 @@
 const HtmlComponentCreator = {
-  getAnchorComponent: (link, displayTxt) => {
+  getAnchorComponent: async (link, displayTxt) => {
     let anchor = document.createElement("a");
     anchor.setAttribute("href", link);
     if (displayTxt) {
@@ -8,7 +8,7 @@ const HtmlComponentCreator = {
     return anchor;
   },
 
-  getMeta: () => {
+  getMeta: async () => {
     let meta = document.createElement("meta");
     meta.name = "viewport";
     meta.httpEquiv = "X-UA-Compatible";
@@ -17,13 +17,13 @@ const HtmlComponentCreator = {
     return meta;
   },
 
-  getPageTitle: titleText => {
+  getPageTitle: async titleText => {
     var title = document.createElement("TITLE");
     title.setAttribute("text", titleText);
     return title;
   },
 
-  getStyleComponent: stylePath => {
+  getStyleComponent: async stylePath => {
     var link = document.createElement("LINK");
     link.setAttribute("rel", "stylesheet");
     link.setAttribute("type", "text/css");
@@ -31,29 +31,32 @@ const HtmlComponentCreator = {
     return link;
   },
 
-  getHeaderComponent: () => {
+  getHeaderComponent: async () => {
     var header = document.createElement("DIV");
     header.setAttribute("class", "header");
 
-    var logoElement = HtmlComponentCreator.getAnchorComponent("/", "Home");
+    var logoElement = await HtmlComponentCreator.getAnchorComponent(
+      "/",
+      "Home"
+    );
     logoElement.setAttribute("class", "logo");
 
     header.appendChild(logoElement);
 
-    var nav = HtmlComponentCreator.getNavComponent();
+    var nav = await HtmlComponentCreator.getNavComponent();
     header.appendChild(nav);
 
     return header;
   },
 
-  getNavComponent: () => {
+  getNavComponent: async () => {
     var navItem = document.createElement("DIV");
     navItem.setAttribute("class", "nav-menu");
     var {
       aboutMenuItem,
       blogsMenuItem,
       projectsMenuItem
-    } = HtmlComponentCreator.getMenuItem2();
+    } = await HtmlComponentCreator.getMenuItem2();
 
     navItem.appendChild(aboutMenuItem);
     navItem.appendChild(blogsMenuItem);
@@ -62,7 +65,7 @@ const HtmlComponentCreator = {
     return navItem;
   },
 
-  getFooterComponent: () => {
+  getFooterComponent: async () => {
     var footer = document.createElement("DIV");
     footer.setAttribute("class", "footer");
 
@@ -74,27 +77,27 @@ const HtmlComponentCreator = {
     return footer;
   },
 
-  getMenuItem2: () => {
-    var aboutMenuItem = HtmlComponentCreator.getAnchorComponent(
+  getMenuItem2: async () => {
+    var aboutMenuItem = await HtmlComponentCreator.getAnchorComponent(
       "/src/about.html",
       "About Me"
     );
-    var blogsMenuItem = HtmlComponentCreator.getAnchorComponent(
+    var blogsMenuItem = await HtmlComponentCreator.getAnchorComponent(
       "/src/blogList.html",
       "Articles"
     );
-    var projectsMenuItem = HtmlComponentCreator.getAnchorComponent(
+    var projectsMenuItem = await HtmlComponentCreator.getAnchorComponent(
       "/src/projects.html",
       "Projects"
     );
     return { aboutMenuItem, blogsMenuItem, projectsMenuItem };
   },
 
-  getGitHubEditComponent: filePath => {
+  getGitHubEditComponent: async filePath => {
     var editLinkContainer = document.createElement("DIV");
     editLinkContainer.setAttribute("class", "edit-link-container");
 
-    var editLink = HtmlComponentCreator.getAnchorComponent(
+    var editLink = await HtmlComponentCreator.getAnchorComponent(
       "https://github.com/vermapraveen/vermapraveen.github.io/blob/master/content/posts/" +
         filePath,
       "Edit on GitHub"
@@ -105,25 +108,25 @@ const HtmlComponentCreator = {
     return editLinkContainer;
   },
 
-  getBlogThumbnail: imgSrc => {
+  getBlogThumbnail: async imgSrc => {
     var img = document.createElement("IMG");
     img.setAttribute("class", "blogThumbnail");
     img.setAttribute("src", imgSrc);
     return img;
   },
 
-  getBlogThumbnailContainer: imgSrc => {
+  getBlogThumbnailContainer: async imgSrc => {
     var blogThumbnailContainer = document.createElement("DIV");
     blogThumbnailContainer.setAttribute("class", "blogItemImgContainer");
 
     blogThumbnailContainer.appendChild(
-      HtmlComponentCreator.getBlogThumbnail(imgSrc)
+      await HtmlComponentCreator.getBlogThumbnail(imgSrc)
     );
 
     return blogThumbnailContainer;
   },
 
-  getBlogDetails: blogTitle => {
+  getBlogDetails: async blogTitle => {
     var blogItemTxtContainer = document.createElement("DIV");
     blogItemTxtContainer.setAttribute("class", "blogItemTxtContainer");
 
@@ -136,8 +139,10 @@ const HtmlComponentCreator = {
     return blogItemTxtContainer;
   },
 
-  getDraftBlogDetails: blogTitle => {
-    var blogItemTxtContainer = HtmlComponentCreator.getBlogDetails(blogTitle);
+  getDraftBlogDetails: async blogTitle => {
+    var blogItemTxtContainer = await HtmlComponentCreator.getBlogDetails(
+      blogTitle
+    );
     var draftSpan = document.createElement("span");
     draftSpan.setAttribute("id", "draft");
     draftSpan.innerText = "[DRAFT]";
@@ -146,8 +151,10 @@ const HtmlComponentCreator = {
     return blogItemTxtContainer;
   },
 
-  getPublishedBlogDetails: (blogTitle, publishedDate) => {
-    var blogItemTxtContainer = HtmlComponentCreator.getBlogDetails(blogTitle);
+  getPublishedBlogDetails: async (blogTitle, publishedDate) => {
+    var blogItemTxtContainer = await HtmlComponentCreator.getBlogDetails(
+      blogTitle
+    );
     var blogItemDateContainer = document.createElement("DIV");
     blogItemDateContainer.setAttribute("class", "blogItemDateContainer");
     var textDateNode = document.createTextNode(publishedDate);
@@ -158,7 +165,7 @@ const HtmlComponentCreator = {
     return blogItemTxtContainer;
   },
 
-  getBlogInfoContainerDivs: (
+  getBlogInfoContainerDivs: async (
     blogTitle,
     blogThumbnailPath,
     isDraft,
@@ -168,11 +175,16 @@ const HtmlComponentCreator = {
     blogItemInfoContainer.setAttribute("class", "blogItemInfoContainer");
 
     var blogItemTxtContainer = isDraft
-      ? HtmlComponentCreator.getDraftBlogDetails(blogTitle)
-      : HtmlComponentCreator.getPublishedBlogDetails(blogTitle, publishedDate);
+      ? await HtmlComponentCreator.getDraftBlogDetails(blogTitle)
+      : await HtmlComponentCreator.getPublishedBlogDetails(
+          blogTitle,
+          publishedDate
+        );
 
     blogItemInfoContainer.appendChild(
-      HtmlComponentCreator.getBlogThumbnailContainer("/" + blogThumbnailPath)
+      await HtmlComponentCreator.getBlogThumbnailContainer(
+        "/" + blogThumbnailPath
+      )
     );
     blogItemInfoContainer.appendChild(blogItemTxtContainer);
 
@@ -188,20 +200,20 @@ const HtmlComponentCreator = {
     return blogContainer_1;
   },
 
-  getBlogInfoLink: (
+  getBlogInfoLink: async (
     path,
     blogTitle,
     blogThumbnailPath,
     isDraft,
     publishedDate
   ) => {
-    var menuLink = HtmlComponentCreator.getAnchorComponent(
+    var menuLink = await HtmlComponentCreator.getAnchorComponent(
       "blog.html?id=" + path
     );
     menuLink.setAttribute("class", "blogItemLink");
 
     menuLink.appendChild(
-      HtmlComponentCreator.getBlogInfoContainerDivs(
+      await HtmlComponentCreator.getBlogInfoContainerDivs(
         blogTitle,
         blogThumbnailPath,
         isDraft,
@@ -212,18 +224,7 @@ const HtmlComponentCreator = {
     return menuLink;
   },
 
-  unescapeHTML: text => {
-    return text
-    .replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'");
-  },
-
-  convertMdToHtml: (contentText, markdownFileName) => {
-    var showdn = new Showdown.converter();
-    var mdText = showdn.makeHtml(HtmlComponentCreator.unescapeHTML(contentText));
+  getBlogContent: async (mdText, markdownFileName) => {
     var elementToDisplay = document.getElementById("blog-container");
     var blogContentDiv = document.createElement("DIV");
     blogContentDiv.setAttribute("class", "blog-content");
@@ -240,7 +241,7 @@ const HtmlComponentCreator = {
     var jsontext = "{" + metadataElement.innerText + "}";
     var postMeta = JSON.parse(jsontext);
     elementToDisplay.appendChild(
-      HtmlComponentCreator.getBlogInfoContainerDivs(
+      await HtmlComponentCreator.getBlogInfoContainerDivs(
         postMeta.title,
         postMeta.thumbnail,
         postMeta.draft,
@@ -249,7 +250,7 @@ const HtmlComponentCreator = {
     );
     elementToDisplay.appendChild(blogContentDiv);
     let blogContainer = document.getElementsByClassName("main-container")[0];
-    let editOnGithubComponent = HtmlComponentCreator.getGitHubEditComponent(
+    let editOnGithubComponent = await HtmlComponentCreator.getGitHubEditComponent(
       markdownFileName
     );
     blogContainer.insertBefore(
@@ -258,23 +259,25 @@ const HtmlComponentCreator = {
     );
   },
 
-  getMaterPage: () => {
+  getMaterPage: async () => {
     var head = document.getElementsByTagName("HEAD")[0];
-    head.insertBefore(HtmlComponentCreator.getMeta(), head.firstChild);
-    head.append(HtmlComponentCreator.getPageTitle("Praveen K Verma"));
-    head.append(HtmlComponentCreator.getStyleComponent("/src/styles/main.css"));
+    head.insertBefore(await HtmlComponentCreator.getMeta(), head.firstChild);
+    head.append(await HtmlComponentCreator.getPageTitle("Praveen K Verma"));
+    head.append(
+      await HtmlComponentCreator.getStyleComponent("/src/styles/main.css")
+    );
     var body = document.getElementsByTagName("BODY")[0];
-    var bodyContainer = document.createElement('div');
-    bodyContainer.setAttribute('class', 'main-container');
+    var bodyContainer = document.createElement("div");
+    bodyContainer.setAttribute("class", "main-container");
     do {
-        bodyContainer.appendChild(body.children[0]);
+      bodyContainer.appendChild(body.children[0]);
     } while (body.children.length > 0);
     body.appendChild(bodyContainer);
-    var header = HtmlComponentCreator.getHeaderComponent();
+    var header = await HtmlComponentCreator.getHeaderComponent();
     body.insertBefore(header, body.firstChild);
-    var footer = HtmlComponentCreator.getFooterComponent();
+    var footer = await HtmlComponentCreator.getFooterComponent();
     body.append(footer);
-  },
+  }
 };
 
 export default HtmlComponentCreator;

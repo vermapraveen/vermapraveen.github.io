@@ -3,19 +3,15 @@
 import HtmlComponentCreator from "/src/scripts/htmlComponents.js";
 
 const loadBlogList = async () => {
-  getBasicData();
-};
-
-function getBasicData() {
   fetch("/content/metadata.json")
     .then(response => response.text())
     .then(text => {
       var actual_JSON = JSON.parse(text);
       var blogList = document.getElementById("blog-item-container");
 
-      actual_JSON.forEach(function(blogInfoJson) {
+      actual_JSON.forEach(async (blogInfoJson) => {
         blogList.appendChild(
-          HtmlComponentCreator.getBlogInfoLink(
+          await HtmlComponentCreator.getBlogInfoLink(
             blogInfoJson.path,
             blogInfoJson.title,
             blogInfoJson.thumbnail,
@@ -25,7 +21,7 @@ function getBasicData() {
         );
       });
     });
-}
+};
 
 // Listen on page load:
 window.addEventListener("load", loadBlogList);

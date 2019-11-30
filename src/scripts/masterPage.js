@@ -1,12 +1,10 @@
- 
 "use strict";
 
-import HtmlComponentCreator from '/src/scripts/htmlComponents.js'
+import HtmlComponentCreator from "/src/scripts/htmlComponents.js";
 
 const loadMasterPage = async () => {
-
-    HtmlComponentCreator.getMaterPage();  
-}
+  await HtmlComponentCreator.getMaterPage();
+};
 
 // Listen on page load:
-window.addEventListener('load', loadMasterPage);
+window.addEventListener("load", loadMasterPage);
