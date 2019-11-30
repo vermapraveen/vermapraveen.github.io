@@ -6,7 +6,7 @@ import MdToHtmlConverter from "/src/scripts/mdToHtmlConverter.js";
 const getPostData = async () => {
   var markdownFileName = window.location.search.substring(4);
 
-  fetch("/" + markdownFileName)
+  fetch("/content/posts/" + markdownFileName+".md")
     .then(contentResponse => contentResponse.text())
     .then(async contentText => {
       await HtmlComponentCreator.applyMasterPage();

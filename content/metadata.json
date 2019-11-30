@@ -1,1 +1,25 @@
-[{"path":"content/posts/webapplication-to-website.md" ,"date":"2019-11-27", "title":"Moving from WebApplication to Simple Website", "thumbnail":"content/thumbnails/4.png", "slug":"webapplication-to-website", "tags":[ "css", "javascript", "html" ]},{"path":"content/posts/working-with-github-pages.md" ,"date":"2019-11-26", "title":"Working with GitHub-Pages", "thumbnail":"content/thumbnails/5.png", "slug":"working-with-github-pages", "tags":[ "GithubPages", "GitHub Actions" ]}]
+[
+    {
+        "path": "content/posts/webapplication-to-website.md",
+        "date": "2019-11-27",
+        "title": "Moving from WebApplication to Simple Website",
+        "thumbnail": "content/thumbnails/4.png",
+        "slug": "webapplication-to-website",
+        "tags": [
+            "css",
+            "javascript",
+            "html"
+        ]
+    },
+    {
+        "path": "content/posts/working-with-github-pages.md",
+        "date": "2019-11-26",
+        "title": "Working with GitHub-Pages",
+        "thumbnail": "content/thumbnails/5.png",
+        "slug": "working-with-github-pages",
+        "tags": [
+            "GithubPages",
+            "GitHub Actions"
+        ]
+    }
+]

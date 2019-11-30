@@ -8,6 +8,15 @@ const HtmlComponentCreator = {
     return anchor;
   },
 
+  getClickableComponent: async displayTxt => {
+    var clickable = document.createElement("DIV");
+    clickable.setAttribute("class", "clickable");
+    var textNode = document.createTextNode(displayTxt);
+    clickable.appendChild(textNode);
+
+    return clickable;
+  },
+
   getMeta: async () => {
     let meta = document.createElement("meta");
     meta.name = "viewport";
@@ -78,18 +87,28 @@ const HtmlComponentCreator = {
   },
 
   getMenuItem2: async () => {
-    var aboutMenuItem = await HtmlComponentCreator.getAnchorComponent(
-      "/src/about.html",
+    var aboutMenuItem = await HtmlComponentCreator.getClickableComponent(
       "About Me"
     );
-    var blogsMenuItem = await HtmlComponentCreator.getAnchorComponent(
-      "/src/blogList.html",
+    aboutMenuItem.addEventListener("click", e => {
+      window.location.href = "/about";
+    });
+
+    var blogsMenuItem = await HtmlComponentCreator.getClickableComponent(
       "Articles"
     );
-    var projectsMenuItem = await HtmlComponentCreator.getAnchorComponent(
-      "/src/projects.html",
+    blogsMenuItem.addEventListener("click", e => {
+      window.location.href = "/bloglist";
+    });
+
+    var projectsMenuItem = await HtmlComponentCreator.getClickableComponent(
       "Projects"
     );
+
+    projectsMenuItem.addEventListener("click", e => {
+      window.location.href = "/projects";
+    });
+
     return { aboutMenuItem, blogsMenuItem, projectsMenuItem };
   },
 
@@ -208,7 +227,7 @@ const HtmlComponentCreator = {
     publishedDate
   ) => {
     var menuLink = await HtmlComponentCreator.getAnchorComponent(
-      "blog.html?id=" + path
+      "/blog?id=" + path
     );
     menuLink.setAttribute("class", "blogItemLink");
 
@@ -292,7 +311,7 @@ const HtmlComponentCreator = {
     var aboutDiv = document.createElement("DIV");
     aboutDiv.innerHTML = textToDispaly;
     if (classToApply) {
-      aboutDiv.setAttribute('class', classToApply);
+      aboutDiv.setAttribute("class", classToApply);
     }
     var mainContainer = document.getElementsByClassName("main-container")[0];
     mainContainer.insertBefore(aboutDiv, mainContainer.firstChild);

@@ -43,6 +43,22 @@ body {
   color: white;
 }
 
+.header .clickable {
+  float: left;
+  color: black;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.header .clickable:hover {
+  background-color: #ddd;
+  color: black;
+  cursor: pointer;
+}
+
 .nav-menu {
   float: right;
 }

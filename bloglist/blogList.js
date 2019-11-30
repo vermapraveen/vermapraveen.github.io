@@ -9,13 +9,13 @@ const getBlogList = async () => {
   fetch("/content/metadata.json")
     .then(response => response.text())
     .then(text => {
-      var actual_JSON = JSON.parse(text);
+      var actual_JSON = JSON.parse(text); 
       var blogList = document.getElementsByClassName("blog-item-container")[0];
 
       actual_JSON.forEach(async (blogInfoJson) => {
         blogList.appendChild(
           await HtmlComponentCreator.getBlogInfoLink(
-            blogInfoJson.path,
+            blogInfoJson.slug,
             blogInfoJson.title,
             blogInfoJson.thumbnail,
             blogInfoJson.draft,
