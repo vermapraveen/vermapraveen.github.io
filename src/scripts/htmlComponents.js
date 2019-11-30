@@ -225,7 +225,7 @@ const HtmlComponentCreator = {
   },
 
   getBlogContent: async (mdText, markdownFileName) => {
-    var elementToDisplay = document.getElementById("blog-container");
+    var elementToDisplay = document.getElementsByClassName("blog-container")[0];
     var blogContentDiv = document.createElement("DIV");
     blogContentDiv.setAttribute("class", "blog-content");
     var blogMarkupDiv = document.createElement("DIV");
@@ -259,7 +259,7 @@ const HtmlComponentCreator = {
     );
   },
 
-  getMaterPage: async () => {
+  applyMasterPage: async () => {
     var head = document.getElementsByTagName("HEAD")[0];
     head.insertBefore(await HtmlComponentCreator.getMeta(), head.firstChild);
     head.append(await HtmlComponentCreator.getPageTitle("Praveen K Verma"));
@@ -267,16 +267,35 @@ const HtmlComponentCreator = {
       await HtmlComponentCreator.getStyleComponent("/src/styles/main.css")
     );
     var body = document.getElementsByTagName("BODY")[0];
-    var bodyContainer = document.createElement("div");
-    bodyContainer.setAttribute("class", "main-container");
-    do {
-      bodyContainer.appendChild(body.children[0]);
-    } while (body.children.length > 0);
+    var bodyContainer = await HtmlComponentCreator.getMainContainer(body);
     body.appendChild(bodyContainer);
+
     var header = await HtmlComponentCreator.getHeaderComponent();
     body.insertBefore(header, body.firstChild);
+
     var footer = await HtmlComponentCreator.getFooterComponent();
     body.append(footer);
+  },
+
+  getMainContainer: async body => {
+    var bodyContainer = document.createElement("div");
+    bodyContainer.setAttribute("class", "main-container");
+
+    for (; body.children.length > 0; ) {
+      bodyContainer.appendChild(body.children[0]);
+    }
+
+    return bodyContainer;
+  },
+
+  addToMainContainer: async (textToDispaly, classToApply) => {
+    var aboutDiv = document.createElement("DIV");
+    aboutDiv.innerHTML = textToDispaly;
+    if (classToApply) {
+      aboutDiv.setAttribute('class', classToApply);
+    }
+    var mainContainer = document.getElementsByClassName("main-container")[0];
+    mainContainer.insertBefore(aboutDiv, mainContainer.firstChild);
   }
 };
 

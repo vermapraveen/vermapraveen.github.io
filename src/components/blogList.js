@@ -2,12 +2,15 @@
 
 import HtmlComponentCreator from "/src/scripts/htmlComponents.js";
 
-const loadBlogList = async () => {
+const getBlogList = async () => {
+  await HtmlComponentCreator.applyMasterPage();
+  await HtmlComponentCreator.addToMainContainer("List of my articles", "blog-item-container");
+  
   fetch("/content/metadata.json")
     .then(response => response.text())
     .then(text => {
       var actual_JSON = JSON.parse(text);
-      var blogList = document.getElementById("blog-item-container");
+      var blogList = document.getElementsByClassName("blog-item-container")[0];
 
       actual_JSON.forEach(async (blogInfoJson) => {
         blogList.appendChild(
@@ -24,4 +27,4 @@ const loadBlogList = async () => {
 };
 
 // Listen on page load:
-window.addEventListener("load", loadBlogList);
+window.addEventListener("load", getBlogList);

@@ -8,9 +8,12 @@ const getPostData = async () => {
 
   fetch("/" + markdownFileName)
     .then(contentResponse => contentResponse.text())
-    .then(async (contentText) => {
-        var  markdownText = await MdToHtmlConverter.convert(contentText);
-        await HtmlComponentCreator.getBlogContent(markdownText, markdownFileName);
+    .then(async contentText => {
+      await HtmlComponentCreator.applyMasterPage();
+      await HtmlComponentCreator.addToMainContainer("", "blog-container");
+
+      var markdownText = await MdToHtmlConverter.convert(contentText);
+      await HtmlComponentCreator.getBlogContent(markdownText, markdownFileName);
     });
 };
 
