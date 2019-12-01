@@ -1,3 +1,5 @@
+import MdToHtmlConverter from "/src/scripts/mdToHtmlConverter.js";
+
 const HtmlComponentCreator = {
   getAnchorComponent: async (link, displayTxt) => {
     let anchor = document.createElement("a");
@@ -91,14 +93,48 @@ const HtmlComponentCreator = {
       "About Me"
     );
     aboutMenuItem.addEventListener("click", e => {
-      window.location.href = "/about";
+      var mainContainer = document.getElementsByClassName("main-container")[0];
+      if (mainContainer.children.length > 0) {
+        mainContainer.removeChild(mainContainer.children[0]);
+      }
+
+      HtmlComponentCreator.addToMainContainer("This is an ABOUT page");
     });
 
     var blogsMenuItem = await HtmlComponentCreator.getClickableComponent(
       "Articles"
     );
     blogsMenuItem.addEventListener("click", e => {
-      window.location.href = "/bloglist";
+      var mainContainer = document.getElementsByClassName("main-container")[0];
+      if (mainContainer.children.length > 0) {
+        mainContainer.removeChild(mainContainer.children[0]);
+      }
+
+      HtmlComponentCreator.addToMainContainer(
+        "List of my articles",
+        "blog-item-container"
+      );
+
+      fetch("/content/metadata.json")
+        .then(response => response.text())
+        .then(text => {
+          var actual_JSON = JSON.parse(text);
+          var blogList = document.getElementsByClassName(
+            "blog-item-container"
+          )[0];
+
+          actual_JSON.forEach(async blogInfoJson => {
+            blogList.appendChild(
+              await HtmlComponentCreator.getBlogInfoLink(
+                blogInfoJson.slug + ".md",
+                blogInfoJson.title,
+                blogInfoJson.thumbnail,
+                blogInfoJson.draft,
+                blogInfoJson.date
+              )
+            );
+          });
+        });
     });
 
     var projectsMenuItem = await HtmlComponentCreator.getClickableComponent(
@@ -106,7 +142,12 @@ const HtmlComponentCreator = {
     );
 
     projectsMenuItem.addEventListener("click", e => {
-      window.location.href = "/projects";
+      var mainContainer = document.getElementsByClassName("main-container")[0];
+      if (mainContainer.children.length > 0) {
+        mainContainer.removeChild(mainContainer.children[0]);
+      }
+
+      HtmlComponentCreator.addToMainContainer("This is a PROJECT page");
     });
 
     return { aboutMenuItem, blogsMenuItem, projectsMenuItem };
@@ -226,21 +267,37 @@ const HtmlComponentCreator = {
     isDraft,
     publishedDate
   ) => {
-    var menuLink = await HtmlComponentCreator.getAnchorComponent(
-      "/blog?id=" + path
-    );
-    menuLink.setAttribute("class", "blogItemLink");
+    // var menuLink = await HtmlComponentCreator.getClickableComponent(
+    //   "/blog?id=" + path
+    // );
+    // menuLink.setAttribute("class", "blogItemLink");
 
-    menuLink.appendChild(
-      await HtmlComponentCreator.getBlogInfoContainerDivs(
-        blogTitle,
-        blogThumbnailPath,
-        isDraft,
-        publishedDate
-      )
+    // menuLink.appendChild(
+    var blogInfo = await HtmlComponentCreator.getBlogInfoContainerDivs(
+      blogTitle,
+      blogThumbnailPath,
+      isDraft,
+      publishedDate
     );
 
-    return menuLink;
+    blogInfo.addEventListener("click", e => {
+      var mainContainer = document.getElementsByClassName("main-container")[0];
+      if (mainContainer.children.length > 0) {
+        mainContainer.removeChild(mainContainer.children[0]);
+      }
+
+      fetch("/content/posts/" + path)
+        .then(contentResponse => contentResponse.text())
+        .then(async contentText => {
+          await HtmlComponentCreator.addToMainContainer("", "blog-container");
+
+          var markdownText = await MdToHtmlConverter.convert(contentText);
+          await HtmlComponentCreator.getBlogContent(markdownText, path);
+        });
+    });
+    // );
+
+    return blogInfo;
   },
 
   getBlogContent: async (mdText, markdownFileName) => {
@@ -308,13 +365,20 @@ const HtmlComponentCreator = {
   },
 
   addToMainContainer: async (textToDispaly, classToApply) => {
-    var aboutDiv = document.createElement("DIV");
-    aboutDiv.innerHTML = textToDispaly;
+    var mainContainerFirstChild = document.createElement("DIV");
+    mainContainerFirstChild.innerHTML = textToDispaly;
+
     if (classToApply) {
-      aboutDiv.setAttribute("class", classToApply);
+      mainContainerFirstChild.setAttribute("class", classToApply);
+    } else {
+      mainContainerFirstChild.classList.add("main-container-child");
     }
+
     var mainContainer = document.getElementsByClassName("main-container")[0];
-    mainContainer.insertBefore(aboutDiv, mainContainer.firstChild);
+    mainContainer.insertBefore(
+      mainContainerFirstChild,
+      mainContainer.firstChild
+    );
   }
 };
 
