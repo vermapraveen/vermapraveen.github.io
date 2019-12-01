@@ -1,5 +1,15 @@
 [
     {
+        "path": "content/posts/redux-with-plainjs.md",
+        "date": "2019-12-01",
+        "title": "Learning Redux with Plain JavaScript",
+        "thumbnail": "content/thumbnails/redux.svg",
+        "slug": "redux-with-plainjs",
+        "tags": [
+            "javascript"
+        ]
+    },
+    {
         "path": "content/posts/webapplication-to-website.md",
         "date": "2019-11-27",
         "title": "Moving from WebApplication to Simple Website",
