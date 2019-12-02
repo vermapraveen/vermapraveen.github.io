@@ -89,66 +89,16 @@ const HtmlComponentCreator = {
   },
 
   getMenuItem2: async () => {
-    var aboutMenuItem = await HtmlComponentCreator.getClickableComponent(
+    var aboutMenuItem = await HtmlComponentCreator.getAnchorComponent("/about",
       "About Me"
     );
-    aboutMenuItem.addEventListener("click", e => {
-      var mainContainer = document.getElementsByClassName("main-container")[0];
-      if (mainContainer.children.length > 0) {
-        mainContainer.removeChild(mainContainer.children[0]);
-      }
 
-      HtmlComponentCreator.addToMainContainer("This is an ABOUT page");
-    });
-
-    var blogsMenuItem = await HtmlComponentCreator.getClickableComponent(
+    var blogsMenuItem = await HtmlComponentCreator.getAnchorComponent("/blog",
       "Articles"
     );
-    blogsMenuItem.addEventListener("click", e => {
-      var mainContainer = document.getElementsByClassName("main-container")[0];
-      if (mainContainer.children.length > 0) {
-        mainContainer.removeChild(mainContainer.children[0]);
-      }
-
-      HtmlComponentCreator.addToMainContainer(
-        "List of my articles",
-        "blog-item-container"
-      );
-
-      fetch("/content/metadata.json")
-        .then(response => response.text())
-        .then(text => {
-          var actual_JSON = JSON.parse(text);
-          var blogList = document.getElementsByClassName(
-            "blog-item-container"
-          )[0];
-
-          actual_JSON.forEach(async blogInfoJson => {
-            blogList.appendChild(
-              await HtmlComponentCreator.getBlogInfoLink(
-                blogInfoJson.slug + ".md",
-                blogInfoJson.title,
-                blogInfoJson.thumbnail,
-                blogInfoJson.draft,
-                blogInfoJson.date
-              )
-            );
-          });
-        });
-    });
-
-    var projectsMenuItem = await HtmlComponentCreator.getClickableComponent(
+    var projectsMenuItem = await HtmlComponentCreator.getAnchorComponent("/projects",
       "Projects"
     );
-
-    projectsMenuItem.addEventListener("click", e => {
-      var mainContainer = document.getElementsByClassName("main-container")[0];
-      if (mainContainer.children.length > 0) {
-        mainContainer.removeChild(mainContainer.children[0]);
-      }
-
-      HtmlComponentCreator.addToMainContainer("This is a PROJECT page");
-    });
 
     return { aboutMenuItem, blogsMenuItem, projectsMenuItem };
   },
@@ -280,21 +230,21 @@ const HtmlComponentCreator = {
       publishedDate
     );
 
-    blogInfo.addEventListener("click", e => {
-      var mainContainer = document.getElementsByClassName("main-container")[0];
-      if (mainContainer.children.length > 0) {
-        mainContainer.removeChild(mainContainer.children[0]);
-      }
+    // blogInfo.addEventListener("click", e => {
+    //   var mainContainer = document.getElementsByClassName("main-container")[0];
+    //   if (mainContainer.children.length > 0) {
+    //     mainContainer.removeChild(mainContainer.children[0]);
+    //   }
 
-      fetch("/content/posts/" + path)
-        .then(contentResponse => contentResponse.text())
-        .then(async contentText => {
-          await HtmlComponentCreator.addToMainContainer("", "blog-container");
+    //   fetch("/content/posts/" + path)
+    //     .then(contentResponse => contentResponse.text())
+    //     .then(async contentText => {
+    //       await HtmlComponentCreator.addToMainContainer("", "blog-container");
 
-          var markdownText = await MdToHtmlConverter.convert(contentText);
-          await HtmlComponentCreator.getBlogContent(markdownText, path);
-        });
-    });
+    //       var markdownText = await MdToHtmlConverter.convert(contentText);
+    //       await HtmlComponentCreator.getBlogContent(markdownText, path);
+    //     });
+    // });
     // );
 
     return blogInfo;
