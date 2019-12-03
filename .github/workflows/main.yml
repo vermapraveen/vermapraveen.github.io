@@ -16,10 +16,10 @@ jobs:
     #     node-version: '10.x'
     #     registry-url: 'https://registry.npmjs.org'
     - name: install yarn
-      run:  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - \
-            echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list \
-            apt update \
-            apt install yarn     
+      run:  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - 
+      run:  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+      run:  sudo apt update \
+      run:  sudo apt install yarn     
     - name: install dependencies via yarn
       run: yarn install
     # - name: build
