@@ -104,6 +104,8 @@ We will create a new Step
 
  I think that should be be all.
 
+ >**Note**: This step ***didn't*** work for me. But I will look into this. As of now I had to commit showdown.min.js file. Updated .gitignore to include this file only.
+
  **Problem 3**: Changes made in last 2 step may take some time as Gihub-Pages cache clearing take good amount of time. For me, I noticed, it was half day :(
 
 ---
