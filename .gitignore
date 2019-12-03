@@ -3,3 +3,8 @@ src/scripts/Utils.js
 web.config
 yarn-error.log
 node_modules/*
+!/node_modules/showdown
+/node_modules/showdown/*
+!/node_modules/showdown/dist
+/node_modules/showdown/dist/*
+!/node_modules/showdown/dist/showdown.min.js
