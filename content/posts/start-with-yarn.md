@@ -3,8 +3,7 @@
 "title":"Learning Yarn Package Manager",
 "thumbnail":"content/thumbnails/yarn.png",
 "slug":"start-with-yarn",
-"tags":[ "yarn" ],
-"draft":"true"
+"tags":[ "yarn" ]
 
 ---
 
@@ -106,3 +105,7 @@ We will create a new Step
  I think that should be be all.
 
  **Problem 3**: Changes made in last 2 step may take some time as Gihub-Pages cache clearing take good amount of time. For me, I noticed, it was half day :(
+
+---
+Thanks,  
+Praveen
