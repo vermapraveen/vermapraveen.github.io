@@ -1,0 +1,11 @@
+{
+  "name": "vermapraveen.github.io",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:vermapraveen/vermapraveen.github.io.git",
+  "author": "auto-github-action <verma.praveen@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "showdown": "^1.9.1"
+  }
+}

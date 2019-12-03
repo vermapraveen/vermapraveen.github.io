@@ -10,7 +10,7 @@ const MdToHtmlConverter = {
   },
 
   convert: async (contentText) => {
-    var showdn = new Showdown.converter();
+    var showdn = new showdown.Converter();
     var mdText = showdn.makeHtml(
       await MdToHtmlConverter.unescapeHTML(contentText)
     );
