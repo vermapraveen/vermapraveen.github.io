@@ -68,8 +68,9 @@ Add reference from node_module in */blog/index.html*
 Now you should be able to view your website again.  
 >I was using old version of showdown.js and yarn installed newer. There were few syntex changes between 2 version and after updating syntex this worked fine with me.
 
-But this is only on local machine, deployment to GithubPages yet not aware of yarn and would not create node_module based on package.json.  
-We have to update GitHubAction steps.
+**Problem 1**: But this is only on local machine, build via GitHub-Actions yet not aware of yarn and would not create node_module based on package.json. We have to update GitHubAction steps.
+
+**Problem 2**: Also, our showdown path is refering node_modules, I am not aware of GitHub-Page deployment model, not sure if this would copy node_module. In that case reference may not be available.
 
 
 
