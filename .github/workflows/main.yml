@@ -10,28 +10,13 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v1
-    # - name: setup node and registry
-    #   uses: actions/setup-node@v1
-    #   with:
-    #     node-version: '10.x'
-    #     registry-url: 'https://registry.npmjs.org'
-    - name: install yarn1
-      run:  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - 
-    - name: install yarn2
-      run:  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-    - name: install yarn3
-      run:  sudo apt update
-    - name: install yarn4
-      run:  sudo apt install yarn     
-    - name: debug1
-      run: ls -l
+    - name: install yarn
+      run:  |
+            curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+            echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+            sudo apt update
+            sudo apt install yarn
     - name: install dependencies via yarn
       run: | 
         yarn install
-    - name: debug2
-      run: ls -l
-    - name: debug3
-      run: ls -l node_modules/showdown/dist
-    # - name: build
-    #   run: ./build.sh
       

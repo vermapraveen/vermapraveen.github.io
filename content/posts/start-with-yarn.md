@@ -68,12 +68,41 @@ Add reference from node_module in */blog/index.html*
 Now you should be able to view your website again.  
 >I was using old version of showdown.js and yarn installed newer. There were few syntex changes between 2 version and after updating syntex this worked fine with me.
 
-**Problem 1**: But this is only on local machine, build via GitHub-Actions yet not aware of yarn and would not create node_module based on package.json. We have to update GitHubAction steps.
+**Problem 1**: But this is only on local machine, build via GitHub-Actions yet not aware of yarn and would not create node_module based on package.json. We have to update GitHub-Action steps.
 
 **Problem 2**: Also, our showdown path is refering node_modules, I am not aware of GitHub-Page deployment model, not sure if this would copy node_module. In that case reference may not be available.
 
+## Updating Github-Action (Solution to Problem 1)
+As of now our deployment file (/.github/workflows/main.yml) is having only checkout step. Rest is take ncare by default. We will update it for  
+1. install Yarn
+2. Use Yarn to install dependencies
 
+### Insatalling Yarn during deployment process
+Installing Yarn would be same as defined above in this article. We will create a new Step and add above instructions
+```
+    - name: install yarn1
+      run:  |
+            curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+            echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+            sudo apt update
+            sudo apt install yarn
+```
 
+### Insatalling Website dependency via Yarn during deployment process
+We will create a new Step
+```
+    - name: install dependencies via yarn
+      run:  |
+            yarn install
+```
 
+## Making node_modules folder available on Github-Pages (Solution to Problem 2)
+1. Make sure you have an empty .nojekyll on website root level. More on this [here](https://github.blog/2009-12-29-bypassing-jekyll-on-github-pages/)
+2. Create a _config.yml file with below content. More on this [here](https://help.github.com/en/github/working-with-github-pages/about-github-pages-and-jekyll#configuring-jekyll-in-your-github-pages-site)
+    ```
+    include: [ "node_modules" ]
+    ```
 
+ I think that should be be all.
 
+ **Problem 3**: Changes made in last 2 step may take some time as Gihub-Pages cache clearing take good amount of time. For me, I noticed, it was half day :(
