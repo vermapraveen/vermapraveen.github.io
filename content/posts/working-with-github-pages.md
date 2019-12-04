@@ -3,7 +3,7 @@
 "title":"Working with GitHub-Pages",
 "thumbnail":"content/thumbnails/5.png",
 "slug":"working-with-github-pages",
-"tags":[ "Github-Pages", "GitHub-Actions" ]
+"tags":[ "github-pages", "gitHub-actions" ]
 
 ---
 ## What is this article about
