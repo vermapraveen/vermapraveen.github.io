@@ -14,7 +14,8 @@ const getPage = async () => {
     }
 
     if (blogId) {
-      let path = "/content/posts/" + blogId + ".md";
+      let filename = blogId + ".md";
+      let path = "/content/posts/" + filename;
 
       fetch(path)
         .then(contentResponse => contentResponse.text())
@@ -22,7 +23,7 @@ const getPage = async () => {
           await HtmlComponentCreator.addToMainContainer("", "blog-container");
 
           var markdownText = await MdToHtmlConverter.convert(contentText);
-          await HtmlComponentCreator.getBlogContent(markdownText, path);
+          await HtmlComponentCreator.getBlogContent(markdownText, filename);
         });
     } else {
       HtmlComponentCreator.addToMainContainer(

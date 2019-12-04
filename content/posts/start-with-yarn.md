@@ -3,7 +3,7 @@
 "title":"Learning Yarn Package Manager",
 "thumbnail":"content/thumbnails/yarn.png",
 "slug":"start-with-yarn",
-"tags":[ "yarn" ]
+"tags":[ "yarn", "GithubPages", "GitHub Actions" ]
 
 ---
 
@@ -18,9 +18,12 @@ One of the goal is to make project structure simple.
 I am on Ubuntu 18.04.3
 
 #### Installing
+Execute on bash:
 ```
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg
+sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main"
+sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt update 
 sudo apt install yarn
 ```
@@ -44,11 +47,9 @@ yarn --version
 ```
 ## Setting Yarn for Project
 As we have only dependency of showdown.js, we will install it via yarn
-
 ```
 yarn init -y
 yarn add showdown
-
 ```
 This would create 2 new files and 1 directory: package.json, yarn.lock, node_modules. If you worked with npm, these new files may look familiar. Learn more [here](https://yarnpkg.com/en/docs/usage).
 
@@ -60,9 +61,14 @@ Remove ***showdown*** reference from */blog/index.html*. We will add it directly
 >    at index2.js:24
 
 Add reference from node_module in */blog/index.html*
-```
-<script type="text/javascript" rel=preload as="style" src="/node_modules/showdown/dist/showdown.min.js"></script>
 
+```
+<script 
+    type="text/javascript" 
+    rel=preload 
+    as="style"
+    src="/node_modules/showdown/dist/howdown.min.js">
+</script>
 ```
 Now you should be able to view your website again.  
 >I was using old version of showdown.js and yarn installed newer. There were few syntex changes between 2 version and after updating syntex this worked fine with me.
@@ -79,20 +85,22 @@ As of now our deployment file (/.github/workflows/main.yml) is having only check
 ### Insatalling Yarn during deployment process
 Installing Yarn would be same as defined above in this article. We will create a new Step and add above instructions
 ```
-    - name: install yarn1
-      run:  |
-            curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-            echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-            sudo apt update
-            sudo apt install yarn
+- name: install yarn1
+    run:  |
+        curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg
+        sudo apt-key add -
+        echo "deb https://dl.yarnpkg.com/debian/ stable main"
+        sudo tee /etc/apt/sources.list.d/yarn.list
+        sudo apt update 
+        sudo apt install yarn
 ```
 
 ### Insatalling Website dependency via Yarn during deployment process
 We will create a new Step
 ```
-    - name: install dependencies via yarn
-      run:  |
-            yarn install
+- name: install dependencies via yarn
+  run:  |
+        yarn install
 ```
 
 ## Making node_modules folder available on Github-Pages (Solution to Problem 2)
@@ -102,11 +110,11 @@ We will create a new Step
     include: [ "node_modules" ]
     ```
 
- I think that should be be all.
+I think that should be be all.
 
- >**Note**: This step ***didn't*** work for me. But I will look into this. As of now I had to commit showdown.min.js file. Updated .gitignore to include this file only.
+>**Note**: This step ***didn't*** work for me. But I will look into this. As of now I had to commit showdown.min.js file. Updated .gitignore to include this file only.
 
- **Problem 3**: Changes made in last 2 step may take some time as Gihub-Pages cache clearing take good amount of time. For me, I noticed, it was half day :(
+**Problem 3**: Changes made in last 2 step may take some time as Gihub-Pages cache clearing take good amount of time. For me, I noticed, it was half day :(
 
 ---
 Thanks,  

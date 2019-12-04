@@ -163,6 +163,36 @@ body {
   height: auto;
 }
 
+.blog-markup pre {
+  background: #5183f5;
+  font-family: Menlo,Roboto Mono,Courier New,monospace;
+  font-size: 13px;
+  direction: ltr;
+  text-align: left;
+  white-space: pre-wrap;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.7;
+  font-weight: 400;
+  margin: 2rem 0;
+}
+
+.blog-markup code {
+  margin: 5px;
+  color: azure;
+}
+
+.blog-markup blockquote {
+  background: yellow;
+}
+
+.blog-markup blockquote p{
+  background: white;
+  color: black;  
+  margin: 0 0 0 10px;
+  padding: 5px;
+}
+
 #draft {
   color: red;
 }
