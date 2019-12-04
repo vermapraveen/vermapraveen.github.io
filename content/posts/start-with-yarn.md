@@ -20,10 +20,8 @@ I am on Ubuntu 18.04.3
 #### Installing
 Execute on bash:
 ```
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg
-sudo apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main"
-sudo tee /etc/apt/sources.list.d/yarn.list
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt update 
 sudo apt install yarn
 ```
@@ -87,10 +85,8 @@ Installing Yarn would be same as defined above in this article. We will create a
 ```
 - name: install yarn1
     run:  |
-        curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg
-        sudo apt-key add -
-        echo "deb https://dl.yarnpkg.com/debian/ stable main"
-        sudo tee /etc/apt/sources.list.d/yarn.list
+        curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+        echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
         sudo apt update 
         sudo apt install yarn
 ```
