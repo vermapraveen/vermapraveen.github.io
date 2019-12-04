@@ -36,7 +36,7 @@ As I am NOT yet using npm for this website, I downloaded it from [CDN](https://c
 3. Changes are made with [Pure function](https://en.wikipedia.org/wiki/Pure_function)  
 
 
-# I am taking a pause on this one, as this website has not any State to manage yet, but I have plans. We will come back to this.
+>I am taking a pause, as this website has not any State to manage yet, but I have plans. We will come back to this.
 
 ---
 Thanks,  

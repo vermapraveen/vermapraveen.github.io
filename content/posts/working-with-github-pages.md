@@ -3,7 +3,7 @@
 "title":"Working with GitHub-Pages",
 "thumbnail":"content/thumbnails/5.png",
 "slug":"working-with-github-pages",
-"tags":[ "GithubPages", "GitHub Actions" ]
+"tags":[ "Github-Pages", "GitHub-Actions" ]
 
 ---
 ## What is this article about
@@ -23,5 +23,5 @@ It's as easy as creating a new repository in your GitHub account. Just make sure
 That's all.
 
 ---
-Thanks,
+Thanks,  
 Praveen

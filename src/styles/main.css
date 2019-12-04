@@ -82,7 +82,9 @@ body {
   font-weight: 300;
   line-height: 1.2;
   color: #212529;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .blog-item-container {
@@ -165,7 +167,7 @@ body {
 
 .blog-markup pre {
   background: #5183f5;
-  font-family: Menlo,Roboto Mono,Courier New,monospace;
+  font-family: Menlo, Roboto Mono, Courier New, monospace;
   font-size: 13px;
   direction: ltr;
   text-align: left;
@@ -186,10 +188,19 @@ body {
   background: yellow;
 }
 
-.blog-markup blockquote p{
+.blog-markup blockquote p {
   background: white;
-  color: black;  
+  color: black;
   margin: 0 0 0 10px;
+  padding: 5px;
+}
+
+.blogTagContainer {
+  color: #5183f5;
+  display: flex;
+}
+
+.blogTagContainerItem {
   padding: 5px;
 }
 

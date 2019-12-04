@@ -3,7 +3,7 @@
 "title":"Learning Yarn Package Manager",
 "thumbnail":"content/thumbnails/yarn.png",
 "slug":"start-with-yarn",
-"tags":[ "yarn", "GithubPages", "GitHub Actions" ]
+"tags":[ "Yarn", "Github-Pages", "GitHub-Actions" ]
 
 ---
 

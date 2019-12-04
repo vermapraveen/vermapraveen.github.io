@@ -40,4 +40,5 @@ I am planning to write on technical topics of web development, aspnetcore, openI
 As I am planning to learn more and more on javascript, I would like to migrate to some cool javascript framework or library like reactjs, but that would happen once I know the logic behind the magic.
 
 ---
-Thanks, Praveen
+Thanks,  
+Praveen

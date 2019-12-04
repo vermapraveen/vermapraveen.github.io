@@ -48,7 +48,8 @@ const getPage = async () => {
               blogInfoJson.title,
               blogInfoJson.thumbnail,
               blogInfoJson.draft,
-              blogInfoJson.date
+              blogInfoJson.date,
+              blogInfoJson.tags
             );
 
             clickabelContainer.appendChild(blogInfo);

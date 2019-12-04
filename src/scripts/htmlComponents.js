@@ -89,14 +89,17 @@ const HtmlComponentCreator = {
   },
 
   getMenuItem2: async () => {
-    var aboutMenuItem = await HtmlComponentCreator.getAnchorComponent("/about",
+    var aboutMenuItem = await HtmlComponentCreator.getAnchorComponent(
+      "/about",
       "About Me"
     );
 
-    var blogsMenuItem = await HtmlComponentCreator.getAnchorComponent("/blog",
+    var blogsMenuItem = await HtmlComponentCreator.getAnchorComponent(
+      "/blog",
       "Articles"
     );
-    var projectsMenuItem = await HtmlComponentCreator.getAnchorComponent("/projects",
+    var projectsMenuItem = await HtmlComponentCreator.getAnchorComponent(
+      "/projects",
       "Projects"
     );
 
@@ -179,7 +182,8 @@ const HtmlComponentCreator = {
     blogTitle,
     blogThumbnailPath,
     isDraft,
-    publishedDate
+    publishedDate,
+    tags
   ) => {
     var blogItemInfoContainer = document.createElement("DIV");
     blogItemInfoContainer.setAttribute("class", "blogItemInfoContainer");
@@ -190,6 +194,16 @@ const HtmlComponentCreator = {
           blogTitle,
           publishedDate
         );
+
+    var blogTagContainer = document.createElement("DIV");
+    blogTagContainer.setAttribute("class", "blogTagContainer");
+    tags.forEach(async tagText => {
+      var aTag = document.createElement("DIV");
+      aTag.setAttribute("class", "blogTagContainerItem");
+      var textElement = document.createTextNode(tagText);
+      aTag.appendChild(textElement);
+      blogTagContainer.appendChild(aTag);
+    });
 
     blogItemInfoContainer.appendChild(
       await HtmlComponentCreator.getBlogThumbnailContainer(
@@ -206,6 +220,7 @@ const HtmlComponentCreator = {
 
     blogContainer_1.appendChild(blogContainer_2);
     blogContainer_2.appendChild(blogItemInfoContainer);
+    blogContainer_2.appendChild(blogTagContainer);
 
     return blogContainer_1;
   },
@@ -271,7 +286,8 @@ const HtmlComponentCreator = {
         postMeta.title,
         postMeta.thumbnail,
         postMeta.draft,
-        postMeta.date
+        postMeta.date,
+        postMeta.tags
       )
     );
     elementToDisplay.appendChild(blogContentDiv);
