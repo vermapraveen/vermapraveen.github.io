@@ -1,12 +1,12 @@
 "use strict";
 
-import HtmlComponentCreator from "/src/scripts/htmlComponents.js";
+const createElement = React.createElement;
+const renderElement = ReactDOM.render;
 
-const getIndex = async () => {
-  await HtmlComponentCreator.applyMasterPage();
-  await HtmlComponentCreator.addToMainContainer("This is an INDEX page");
-};
+class IndexPageContent extends React.Component {
+  render() {
+    return createElement("div", {}, "This is new INDEX page");
+  }
+}
 
-
-// Listen on page load:
-window.addEventListener("load", getIndex);
+renderElement(createElement(IndexPageContent), document.querySelector("#main_container"));

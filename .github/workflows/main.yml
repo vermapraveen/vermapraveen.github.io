@@ -10,12 +10,13 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v1
-    - name: install yarn
+    - name: install dependencies
       run:  |
             curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
             echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
             sudo apt update 
             sudo apt install yarn
+            sudo apt-get install pandoc
     - name: install dependencies via yarn            
       run: | 
         yarn install
