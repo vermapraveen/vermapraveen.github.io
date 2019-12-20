@@ -1,12 +1,17 @@
 "use strict";
 
-const createElement = React.createElement;
-const renderElement = ReactDOM.render;
+const e = React.createElement;
 
-class IndexPageContent extends React.Component {
+class LikeButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { liked: false };
+  }
+
   render() {
-    return createElement("div", {}, "This is new INDEX page");
+    return e("div", {}, "This is new INDEX page");
   }
 }
 
-renderElement(createElement(IndexPageContent), document.querySelector("#main_container"));
+const domContainer = document.getElementById("root");
+ReactDOM.render(e(LikeButton), domContainer);

@@ -19,6 +19,19 @@ const HtmlComponentCreator = {
     return clickable;
   },
 
+  getClickableComponent2: async (link, displayTxt) => {
+    var clickable = document.createElement("DIV");
+    clickable.setAttribute("class", "clickable");
+    var textNode = document.createTextNode(displayTxt);
+    clickable.appendChild(textNode);
+
+    clickable.addEventListener("click", e => {
+      history.pushState({ page: 1 }, link);
+    });
+
+    return clickable;
+  },
+
   getMeta: async () => {
     let meta = document.createElement("meta");
     meta.name = "viewport";
