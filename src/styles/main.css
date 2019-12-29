@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-body {
+.root {
   height: 100vh;
   display: flex;
   /* Direction of the items, can be row or column */
