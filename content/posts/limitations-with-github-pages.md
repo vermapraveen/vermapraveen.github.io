@@ -23,4 +23,7 @@ I noticed for my plain HTML/ JS / CSS website, I am not able to control much on 
 ### 2. More than static website
 During this process, I discoved that I am actully looking for my blog in ReactJs but also I want to have some dynamic behaviours like commenting system, for which I have to create a server side functionality, and I would rather maintain a single kind of website. But this is not an immidiate requirement.
 
+### 3. Jekyll
+Somehow I am not comfortable yet using jekyll and it's settings while building and deploying my website. Eg: I removed this .nojekyll and page build started failing and when I added it back, It's still using it's cached metadata.json file
+
 
