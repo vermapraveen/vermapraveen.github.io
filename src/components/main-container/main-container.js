@@ -1,10 +1,10 @@
-import About from "/src/components/about/about-me.js";
+import Index from "/src/components/index.js";
 
 const MainContiner = props => {
   return React.createElement(
     "div",
     { class: "main-container" },
-    React.createElement(About, null, null)
+    React.createElement(Index, null, null)
   );
 };
 
