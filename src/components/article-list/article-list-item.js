@@ -6,8 +6,20 @@ const ArticleListItem = props => {
     "div",
     { class: "blogItemInfoContainer" },
     [
-      React.createElement(Thumbnail, {thumbnailPath: props.article_info.thumbnail}, null),
-      React.createElement(Title, {title: props.article_info.title}, null)
+      React.createElement(
+        Thumbnail,
+        { thumbnailPath: props.article_info.thumbnail },
+        null
+      ),
+      React.createElement(
+        Title,
+        {
+          title: props.article_info.title,
+          draft: props.article_info.draft,
+          publishedDate: props.article_info.date
+        },
+        null
+      )
     ]
   );
 
