@@ -1,7 +1,7 @@
 ---
 "date":"2019-11-27",
 "title":"Moving from WebApplication to Simple Website",
-"thumbnail":"content/thumbnails/4.png",
+"thumbnail":"/content/thumbnails/4.png",
 "slug":"webapplication-to-website",
 "tags":[ "css", "javascript", "html" ]
 

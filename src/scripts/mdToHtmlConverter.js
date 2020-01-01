@@ -1,6 +1,6 @@
 
 const MdToHtmlConverter = {
-  unescapeHTML: async text => {
+  unescapeHTML: text => {
     return text
       .replace(/&amp;/g, "&")
       .replace(/&lt;/g, "<")
@@ -9,10 +9,10 @@ const MdToHtmlConverter = {
       .replace(/&#39;/g, "'");
   },
 
-  convert: async (contentText) => {
+  convert: (contentText) => {
     var showdn = new showdown.Converter();
     var mdText = showdn.makeHtml(
-      await MdToHtmlConverter.unescapeHTML(contentText)
+      MdToHtmlConverter.unescapeHTML(contentText)
     );
 
     return mdText;

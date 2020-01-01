@@ -1,7 +1,7 @@
 ---
 "date":"2019-12-03",
 "title":"Learning Yarn Package Manager",
-"thumbnail":"content/thumbnails/yarn.png",
+"thumbnail":"/content/thumbnails/yarn.png",
 "slug":"start-with-yarn",
 "tags":[ "yarn", "github-pages", "gitHub-actions" ]
 

@@ -1,7 +1,7 @@
 ---
 "date":"2019-12-01",
 "title":"Learning Redux with Plain JavaScript",
-"thumbnail":"content/thumbnails/redux.svg",
+"thumbnail":"/content/thumbnails/redux.svg",
 "slug":"redux-with-plainjs",
 "tags":[ "javascript" ],
 "draft":"true"

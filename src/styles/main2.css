@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-.root {
+body {
   height: 100vh;
   display: flex;
   /* Direction of the items, can be row or column */
@@ -133,8 +133,8 @@
 .blogThumbnail {
   top: 0px;
   left: 0px;
-  width: 75px;
-  height: 75px;
+  width: 75;
+  height: 75;
   opacity: 1;
 }
 

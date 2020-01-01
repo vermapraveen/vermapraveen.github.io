@@ -1,7 +1,7 @@
 ---
 "date":"2019-11-26",
 "title":"Working with GitHub-Pages",
-"thumbnail":"content/thumbnails/5.png",
+"thumbnail":"/content/thumbnails/5.png",
 "slug":"working-with-github-pages",
 "tags":[ "github-pages", "gitHub-actions" ]
 

@@ -1,7 +1,7 @@
 ---
 "date":"2019-12-29",
 "title":"Limitations With Github Pages",
-"thumbnail":"content/thumbnails/redux.svg",
+"thumbnail":"/content/thumbnails/redux.svg",
 "slug":"limitations-with-github-pages",
 "tags":[ "github-pages" ],
 "draft":"true"

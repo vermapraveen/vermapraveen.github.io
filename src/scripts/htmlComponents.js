@@ -108,7 +108,7 @@ const HtmlComponentCreator = {
     );
 
     var blogsMenuItem = await HtmlComponentCreator.getAnchorComponent(
-      "/blog",
+      "/blog/index2.html",
       "Articles"
     );
     var projectsMenuItem = await HtmlComponentCreator.getAnchorComponent(
@@ -220,7 +220,7 @@ const HtmlComponentCreator = {
 
     blogItemInfoContainer.appendChild(
       await HtmlComponentCreator.getBlogThumbnailContainer(
-        "/" + blogThumbnailPath
+        blogThumbnailPath
       )
     );
     blogItemInfoContainer.appendChild(blogItemTxtContainer);
@@ -319,7 +319,7 @@ const HtmlComponentCreator = {
     head.insertBefore(await HtmlComponentCreator.getMeta(), head.firstChild);
     head.append(await HtmlComponentCreator.getPageTitle("Praveen K Verma"));
     head.append(
-      await HtmlComponentCreator.getStyleComponent("/src/styles/main.css")
+      await HtmlComponentCreator.getStyleComponent("/src/styles/main2.css")
     );
     var body = document.getElementsByTagName("BODY")[0];
     var bodyContainer = await HtmlComponentCreator.getMainContainer(body);
