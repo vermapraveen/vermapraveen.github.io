@@ -65,7 +65,7 @@
 
 .main-container {
   flex: 1;
-  font-size: 3.5rem;
+  /* font-size: 3.5rem; */
   font-weight: 300;
   line-height: 1.2;
   color: #212529;

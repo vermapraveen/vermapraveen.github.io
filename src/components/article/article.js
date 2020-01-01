@@ -1,9 +1,12 @@
 import MdToHtmlConverter from "/src/scripts/mdToHtmlConverter.js";
+import ArticleBody from "/src/components/article/article-body.js";
+import ArticleListItem from "/src/components/article-list/article-list-item.js";
+import EditArticle from "/src/components/article/edit-article.js";
 
 class Article extends React.Component {
   constructor() {
     super();
-    this.state = { articleHtml: "" };
+    // this.state = { articleBodyHtml: null, articleHeader: null };
   }
 
   componentDidMount() {
@@ -14,28 +17,36 @@ class Article extends React.Component {
     fetch(getArticleRequestPath)
       .then(response => response.text())
       .then(data => {
-        let blogMarkupDiv = this.getArticleComponents(data);
-        this.setState({ articleHtml: blogMarkupDiv });
+        let articleComponents = this.getArticleComponents(data);
+        this.setState({
+          articleBodyHtml: articleComponents.articleBodyHtml,
+          articleHeader: articleComponents.articleHeader
+        });
       });
   }
 
   render() {
-    return React.createElement(
-      "div",
-      { class: "blog-container" },
-      React.createElement(
-        "div",
-        { class: "blog-content" },
+    if (this.state && this.state.articleBodyHtml) {
+      return React.createElement("div", { class: "blog-container" }, [
         React.createElement(
-          "div",
-          {
-            class: "blog-markup",
-            dangerouslySetInnerHTML: { __html: this.state.articleHtml.innerHTML }
-          },
+          ArticleListItem,
+          { article_info: this.state.articleHeader },
+          null
+        ),
+        React.createElement(
+          ArticleBody,
+          { articleBodyHtml: this.state.articleBodyHtml },
+          null
+        ),
+        React.createElement(
+          EditArticle,
+          { filePath: this.props.filename + ".md" },
           null
         )
-      )
-    );
+      ]);
+    } else {
+      return React.createElement("div", null, "Loading...");
+    }
   }
 
   getArticleComponents(markdownText) {
@@ -48,7 +59,12 @@ class Article extends React.Component {
     var hrAfter = blogMarkupDiv.getElementsByTagName("hr")[1];
     hrBefore.parentNode.removeChild(hrBefore);
     hrAfter.parentNode.removeChild(hrAfter);
-    return blogMarkupDiv;
+
+    var jsontext = "{" + metadataElement.innerText + "}";
+    var articleHeader = JSON.parse(jsontext);
+
+    const articleBodyHtml = blogMarkupDiv.innerHTML;
+    return { articleBodyHtml, articleHeader };
   }
 }
 

@@ -12,7 +12,7 @@ How easy is to host a static website now!
 ## Why am I writing on this
 If you don't know yet about easy hosting on GitHub Pages, you should.
 
-# What is GitHub Pages
+## What is GitHub Pages
 "*GitHub Pages is a static site hosting service that takes HTML, CSS, and JavaScript files straight from a repository on GitHub, optionally runs the files through a build process, and publishes a website.*"
 
 I tried to host few of my Web Applications via container on Kubernetes, and it's not a trivial task. So GitHub Pages magically do this for you for your static website and abstract all details away.
