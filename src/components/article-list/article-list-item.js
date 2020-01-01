@@ -1,5 +1,6 @@
 import Thumbnail from "/src/components/article-list/thumbnail.js";
 import Title from "/src/components/article-list/title.js";
+import ArticleTagList from "/src/components/article-list/article-tag-list.js";
 
 const ArticleListItem = props => {
   var itemInfo = React.createElement(
@@ -33,7 +34,14 @@ const ArticleListItem = props => {
       {
         class: "blog-info-container-2"
       },
-      itemInfo
+      [
+        itemInfo,
+        React.createElement(
+          ArticleTagList,
+          { tags: props.article_info.tags },
+          null
+        )
+      ]
     )
   );
 };
